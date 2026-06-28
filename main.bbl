@@ -1,0 +1,148 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{original/global//global/global/global}
+    \entry{jcgm2012international}{misc}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=2fdb141ea92251c277a23729edf9b4db}{%
+           family={JCGM},
+           familyi={J\bibinitperiod},
+           given={BIPM},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{887f0f11838fa25b8969787577e30b08}
+      \strng{fullhash}{887f0f11838fa25b8969787577e30b08}
+      \strng{fullhashraw}{887f0f11838fa25b8969787577e30b08}
+      \strng{bibnamehash}{887f0f11838fa25b8969787577e30b08}
+      \strng{authorbibnamehash}{887f0f11838fa25b8969787577e30b08}
+      \strng{authornamehash}{887f0f11838fa25b8969787577e30b08}
+      \strng{authorfullhash}{887f0f11838fa25b8969787577e30b08}
+      \strng{authorfullhashraw}{887f0f11838fa25b8969787577e30b08}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{JCGM 200}
+      \field{title}{International vocabulary of metrology - basic and general concepts and associated terms (VIM)}
+      \field{year}{2012}
+    \endentry
+    \entry{hall2022representing}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=564ad657b753aead4220e04a184703ec}{%
+           family={Hall},
+           familyi={H\bibinitperiod},
+           given={BD},
+           giveni={B\bibinitperiod}}}%
+        {{hash=18a6b7ef358a0ed4ca3dc7469c518159}{%
+           family={Kuster},
+           familyi={K\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{fullhash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{fullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{bibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorbibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authornamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorfullhash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorfullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Measurement: Sensors}
+      \field{title}{Representing quantities and units in digital systems}
+      \field{volume}{23}
+      \field{year}{2022}
+      \field{pages}{100387}
+      \range{pages}{1}
+    \endentry
+    \entry{keil2018comparison}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=e624f2bc675e265ee34db1d4df12cfe4}{%
+           family={Keil},
+           familyi={K\bibinitperiod},
+           given={Jan\bibnamedelima Martin},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=701241088357644459de2f3baae561a3}{%
+           family={Schindler},
+           familyi={S\bibinitperiod},
+           given={Sirko},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage UK: London, England}%
+      }
+      \strng{namehash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{fullhash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{fullhashraw}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{bibnamehash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{authorbibnamehash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{authornamehash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{authorfullhash}{663e0efa3d129e721b4767c62f1a920f}
+      \strng{authorfullhashraw}{663e0efa3d129e721b4767c62f1a920f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semantic Web}
+      \field{number}{1}
+      \field{title}{Comparison and evaluation of ontologies for units of measurement}
+      \field{volume}{10}
+      \field{year}{2018}
+      \field{pages}{33\bibrangedash 51}
+      \range{pages}{19}
+    \endentry
+    \entry{lefranccois2018unified}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=36ea51918966dde7b9dd325ba6f9147b}{%
+           family={Lefrançois},
+           familyi={L\bibinitperiod},
+           given={Maxime},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2472f33c293d18b30767d8cd170089fd}{%
+           family={Zimmermann},
+           familyi={Z\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{fullhash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{fullhashraw}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{bibnamehash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{authorbibnamehash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{authornamehash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{authorfullhash}{26ce58a3cae4815cf1be8a9816b168b4}
+      \strng{authorfullhashraw}{26ce58a3cae4815cf1be8a9816b168b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{European Semantic Web Conference}
+      \field{title}{The unified code for units of measure in RDF: cdt: ucum and other UCUM datatypes}
+      \field{year}{2018}
+      \field{pages}{196\bibrangedash 201}
+      \range{pages}{6}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

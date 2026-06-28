@@ -1,0 +1,10 @@
+\acswitchoff 
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Abstract}{i}{chapter*.1}%
+\contentsline {chapter}{Acknowledgements}{ii}{chapter*.2}%
+\contentsline {chapter}{List of Abbreviations}{ii}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Physical Quantities}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The Problems}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}cdt:ucum as a Datatype-Level Solution}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Prior Work and the Gap This Thesis Addresses:}{2}{section.1.4}%

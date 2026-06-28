@@ -1,0 +1,148 @@
+\chapter{Methodology}
+
+This chapter presents a five-step procedure for implementing cdt:ucum in an RDF library. The procedure is general. It applies to any programming language, any RDF library that supports custom datatypes, and any UCUM backend available in that language. It assumes no particular library architecture and no particular level of SPARQL support. Both vary across environments, and the procedure is designed to make that variation explicit rather than to hide it.
+
+Each step states its goal, prescribes the actions the implementer must carry out, and names the output it produces. The output of each step is the input of the next. This chaining is what makes the procedure repeatable: a second implementer starting from the same specification and the same candidate libraries should reach the same decisions for the same reasons.
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    stepbox/.style={
+        rectangle, draw, thick,
+        rounded corners=4pt,
+        minimum width=9.0cm,
+        minimum height=1.0cm,
+        text width=8.4cm,
+        align=left,
+        inner sep=8pt,
+        font=\small
+    },
+    decnode/.style={
+        diamond, draw, thick,
+        minimum width=2.8cm,
+        minimum height=0.9cm,
+        align=center,
+        font=\small,
+        aspect=2.8
+    },
+    haltnode/.style={
+        rectangle, draw, thick,
+        rounded corners=14pt,
+        fill=gray!20,
+        minimum width=3.6cm,
+        minimum height=0.9cm,
+        align=center,
+        inner sep=6pt,
+        font=\small
+    },
+    arr/.style={-{Stealth[length=2.5mm,width=2mm]}, thick},
+    lbl/.style={font=\footnotesize},
+]
+
+\node[stepbox] (s1) {%
+    \textbf{Step 1:} Identify Candidate Libraries\\[4pt]%
+    {\footnotesize RDF Library\enspace|\enspace UCUM Backend}%
+};
+
+\node[haltnode, right=3.0cm of s1] (stop) {Language not viable\\(stop)};
+
+\node[stepbox, below=0.9cm of s1] (s2) {\textbf{Step 2:} Analyse Extension Points and APIs};
+\node[stepbox, below=0.7cm of s2]  (s3) {\textbf{Step 3:} Assess Feasibility};
+\node[decnode,  below=0.7cm of s3]  (gng) {Go\,/\,No-go};
+\node[stepbox, below=0.7cm of gng] (s4) {\textbf{Step 4:} Implementation};
+\node[stepbox, below=0.7cm of s4]  (s5) {\textbf{Step 5:} Validation};
+
+% main flow
+\draw[arr] (s1) -- (s2);
+\draw[arr] (s2) -- (s3);
+\draw[arr] (s3) -- (gng);
+\draw[arr] (gng.south) -- node[lbl, right=1.5mm] {go} (s4.north);
+\draw[arr] (s4) -- (s5);
+
+% exit branch
+\draw[arr] (s1.east) -- node[lbl, below=1.5mm] {either unavailable} (stop.west);
+
+% no-go loop back
+\draw[arr] (gng.west) -- node[lbl, below=1.5mm] {no-go} ++(-3.2,0) |- (s1.west);
+
+\end{tikzpicture}
+\caption{Five-step procedure with exit at Step~1 and go/no-go branch after Assess Feasibility}
+\label{fig:five-step-procedure}
+\end{figure}
+
+\section{Identify Candidate Libraries}
+
+The goal of this step is to identify two separate things: an RDF library to host the implementation, and a UCUM backend to handle unit parsing and arithmetic. The two searches are independent and proceed in parallel.
+
+For the RDF library, the implementer must list the libraries available in the target language and subject each to a surface check. The check covers three properties. The first is active maintenance. A library that is no longer developed may carry incomplete extension points or undocumented behaviour, and an extension built on it inherits that risk. Maintenance is the floor rather than the whole of it. The age of the library, the size of its contributor base, and the breadth of its adoption count in their own right. An extension reaches users only through its host, so a library a community has already settled on multiplies the reach of the work, and a broad contributor base is a signal that the extension points an implementation depends on will outlive any single maintainer. Completeness belongs in this set of signals rather than above it: a library may lack a major feature and still be the natural host, because the community uses it and builds on it regardless. The second is SPARQL coverage. Several obligations of the specification surface as SPARQL operator behaviours, so the presence and completeness of a SPARQL engine determines how many of them can be addressed at all. A library without a SPARQL engine is not discarded outright. Its available query mechanisms must be documented first, because the operator obligations may still be deliverable through them in a reframed form. The third property is the presence of a custom datatype mechanism. Without a way to associate a datatype IRI with custom parsing behaviour, the registration obligation cannot be met.
+
+For the UCUM backend, the implementer must identify libraries that can parse UCUM codes, convert between units, and perform arithmetic on quantities. UCUM is a specialised standard and the number of libraries supporting it in any language tends to be small. The search must therefore also include general unit-arithmetic libraries that do not parse UCUM. Such a library cannot serve as the backend on its own, but it can supply the arithmetic half of a pairing in which a UCUM-native parser supplies the other half. Whether a single library or a combination is needed depends on the target language, and the question must be settled in this step. When a combination is needed, the implementer must record which library handles which responsibility, because that boundary shapes the design of the internal quantity representation later in the procedure.
+
+The step can produce a null result on either side. If no RDF library exists for the target language with a working custom datatype mechanism, or if no library or pairing can parse UCUM expressions and perform arithmetic at runtime, the shortlist for that side is empty. An empty shortlist on either side closes the procedure for that language: implementation is not possible, and there is no next step. 
+
+The four implementations illustrate both situations. In Python and Java, no single library covers UCUM parsing and unit arithmetic together, so the implementation pairs two libraries with an explicit division of labour between them.
+
+The output of this step is a shortlist of each kind, ordered by suitability, with the reason for every elimination recorded. The ordering matters because a no-go decision at the feasibility step sends the work back to the next candidate on the shortlist rather than back to a new search.
+
+
+\section{Analyze Extension Points and APIs}
+
+The goal of this step is to read the internals of both shortlisted libraries deeply enough to know what is possible and through which mechanism. The surface check of the previous step established that the libraries are worth analysing. This step establishes how each obligation of the specification maps onto what the libraries actually expose.
+
+For the RDF library, the analysis covers three areas. The first is datatype registration. The implementer must determine how the library associates a datatype IRI with a custom type, what happens at parse time when a literal carrying that IRI is encountered, and whether the association can be made from outside the library's core. The analysis must also record how an extension becomes active: automatically on loading, or through an explicit call from the application. The implementation step relies on this answer. The second area is SPARQL operator evaluation. The implementer must locate where the engine evaluates equality, comparison, and arithmetic, and must determine whether each evaluation point is exposed for extension or hardcoded. The two outcomes can coexist within one library: an engine may route equality through a method the registered datatype provides while keeping comparison and arithmetic in code no extension can reach. When an evaluation point is hardcoded, a further question must be answered: does the host language permit runtime intervention from outside the library? The answer separates environments where a workaround is available from environments where the obligation cannot be met without a fork. The third area is the path from SPARQL constructs to those evaluation points. The implementer must establish whether FILTER and BIND expressions share the same operator machinery or reach separate handlers, and whether ORDER BY and the aggregates SUM and AVG travel through the same path as the binary operators or through paths of their own. The answers determine whether one hook covers everything or several hooks are needed, and they cannot be assumed: in the libraries examined here, ordering and aggregation were routinely evaluated apart from the operators they appear to resemble. Finally, the implementer must check whether the library provides a registry through which a function can be added and invoked by IRI from inside a query, since the sameDimension obligation depends on it.
+
+For the UCUM backend, the analysis covers four areas. The first is the parsing API: what it accepts, what it returns, and in what form. The second is arithmetic: whether the backend converts between units, whether it tracks dimensions through operations, and how it signals an operation between incommensurable quantities. The third is the numeric type used internally, and whether it can be configured. A backend that computes in floating point imposes a precision ceiling that no later layer of the implementation can lift, so this property must be established now rather than discovered during validation. The fourth is coverage: whether the backend supports all UCUM codes or has known gaps.
+
+The implementations illustrate why this analysis must reach the level of individual operators rather than stopping at the library as a whole. In the Java case, the engine routes equality through the registered datatype, which makes that obligation a matter of implementing a method, while comparison and arithmetic are evaluated in code that exposes no insertion point of any kind. A single library thus received opposite answers for adjacent obligations. In the Python case, the operator machinery is reachable at runtime, but ordering and aggregation hold their own references to the functions they call, captured when the engine loads. An intervention aimed only at the operator module would leave those paths untouched while appearing complete. Findings of this kind are exactly what the step exists to surface before any code is written.
+
+The output of this step is a map from each obligation of the specification to the mechanism, if any, through which the library can satisfy it, together with the backend's capabilities and known gaps. This map is the sole input of the feasibility assessment that follows.
+
+
+\section{Assess Feasibility}
+
+The goal of this step is to decide, before any code is written, whether the candidate pair can satisfy the specification, and to record how. The input is the map produced by the previous step. The assessment runs through the obligations of Section 3.4 one by one.
+
+One constraint frames the whole assessment: the implementation must be delivered as a standalone extension that leaves the host library unmodified. This constraint ranks above every individual obligation. A fork could satisfy any obligation, and for that reason it settles nothing. It produces a modified distribution that users must run in place of the library they already depend on, and it has to be carried forward against every upstream release. Chapter 1 identified exactly this as the shortcoming of the original Jena-ucum implementation. An obligation that cannot be met without a fork is therefore recorded as not achievable, whatever a fork would make possible.
+
+For each obligation the assessment must reach one of three outcomes: satisfiable through a public API, satisfiable through a workaround, or not achievable without a fork. To reach the outcome, the implementer asks whether an extension point exists and, if so, whether it is a documented public API or requires reaching into internals the library never promised to keep. If no extension point exists, the question is whether the host language offers an alternative mechanism. These two questions produce the outcome. The distinction between cases matters because they age differently. An obligation met through a public API survives library upgrades. One met through a workaround must be re-verified at every upgrade. The cost of every place it touches must be written down at the moment the mechanism is chosen, not rediscovered later. One that requires a fork is closed off by the standalone constraint established above.
+
+The Python implementation shows the middle case. Registration and the custom function were satisfiable through documented public functions. Comparison and arithmetic were not: the engine validates operands against a fixed set of numeric types before evaluating them. The host language, however, permits replacing function references inside a loaded module at runtime. Both obligations were therefore recorded as satisfiable through a workaround, with the cost noted that every replacement point must be re-checked against each new release of the library.
+
+When an obligation is not achievable, the implementer must choose between two responses. The first is to reframe the obligation: deliver the same capability through a different interface, and record what the reframing achieves and what it gives up against the original wording. The second is to return to the first step and continue with the next candidate from the shortlist. The choice rests on three considerations: how central the lost obligation is, whether the shortlist still contains a viable alternative, and how much weight the library carries in its ecosystem. A reframing must never be presented as a fulfilment. It is a documented deviation, and the documentation is what keeps the conformance claim honest.
+
+The JavaScript implementation shows how the weight of the library settles the choice. The library selected there carries only a minimal query layer, and the analysis placed the SPARQL operator obligations out of reach within it. The library itself remains widely deployed and central to its community, and most of its users work through its native query interface rather than through SPARQL. An implementation that serves that interface keeps its value for them. The decision was to proceed, with the operator obligations reframed as an operations interface and a store wrapper that delivers value-based equality through the native query path, and with the record stating that these obligations are not met in their original SPARQL form.
+
+The output of this step is a feasibility record stating, for each obligation, the case it falls under, the mechanism to be used, and any reframing adopted, together with the overall decision.
+
+
+\section{Implementation}
+
+The goal of this step is to turn the feasibility record into a working extension. The work follows a fixed order: the internal quantity representation first, datatype registration second, the SPARQL operator hooks third, and the custom function fourth. The order is not a convention. Registration produces objects of the representation, and the hooks evaluate those objects, so each part depends on the one before it.
+
+The implementer must begin with a class that wraps the UCUM backend and exposes every operation the value space requires: parsing a lexical form and writing one back, equality, comparison, arithmetic, unit conversion, and the dimension test. All backend access must pass through this class. Confining the backend to one place keeps the rest of the extension independent of its API. The class must realise the value space defined in Section 3.4: two quantities in different units of the same dimension that denote the same value must compare as equal. Where the first step selected a pairing rather than a single backend, the division of labour recorded there becomes the internal structure of this class. The parser produces what the arithmetic library consumes.
+
+With the representation in place, the implementer must register cdt:ucum and cdt:\allowbreak ucumunit through the extension point recorded in the feasibility record. From then on the library parses a CDT literal into a typed object rather than an opaque string. Two practical matters must be settled here. The first is activation: whether the extension registers itself when loaded or waits for an explicit call. Either choice works. The second is idempotence: registering twice must be harmless, because a host application cannot be prevented from doing so. Where the library offers no registration mechanism at all, recognition of the two datatype IRIs must live inside the extension and be applied at every point where literals enter it. The JavaScript implementation works this way. Its host library attaches no behaviour to a datatype IRI, so the extension carries its own recognition and applies it in every operation.
+
+The SPARQL hooks come next. The implementer must intercept equality, comparison, and arithmetic through the mechanisms recorded per obligation, and every handler must follow the same pattern. It checks whether its operands are CDT literals. If they are, it evaluates them through the quantity representation. If they are not, it hands the call to the original behaviour unchanged. The fallback matters as much as the interception, because the extension must leave the engine's treatment of every other datatype exactly as it found it. Ill-typed literals must be caught before any value operation and routed into the engine's error path, so that the affected solution is excluded as Section 2.3 described rather than the whole query failing. The map from the analysis step states how many interception points this takes. It also states where none is needed. In two of the four implementations, registration alone already delivered SPARQL equality, because the engine routes equality of typed literals through the registered datatype or its value object. The Python case sits at the other end. The operator functions, the ordering routine, and the aggregate accumulators each held their own references, and the interception reached twenty-five points across four modules before the engine behaved consistently. A handler installed at one point would have looked complete and missed the rest.
+
+The custom function completes the operator work. The implementer must register cdt:sameDimension through the function registry recorded in the analysis. Across the four implementations this was the simplest obligation to satisfy wherever a registry existed. The function extracts two quantities, asks the backend whether their dimensions match, and returns a boolean.
+
+Implementation surfaces cases that the analysis cannot show in advance. Five recur across the four implementations and must be expected in any new one. The first is units the backend cannot parse, with the special units of Section 3.3 first among them. The second is comparison across dimensions inside ORDER BY. The query must never abort on such data; Section 2.3 established that SPARQL leaves this ordering undefined, so any deterministic grouping or fallback is conformant. The third is unit preservation in SUM and AVG, where the engine's own accumulators work on bare numbers and would return a result stripped of its unit. The fourth is precision at the numeric extremes, where the backend's internal number type sets a ceiling that no outer layer can lift. The fifth is the dimensionless case: a bare number must be read as a quantity with the unit one. Each case must be handled explicitly and the chosen behaviour written down, because several of them will return in the next step as expected failures.
+
+The output of this step is the working extension together with the record of edge cases and the behaviour chosen for each. That record joins the feasibility record as input to the validation step.
+
+
+\section{Validation}
+
+The goal of this step is to verify that the extension satisfies each obligation it claims, and to document what it does not satisfy. The inputs are the feasibility record and the edge case record from the two preceding steps. The output that matters is not a count of passing tests. It is an account of conformance in which every claim is backed by a test and every limitation is visible.
+
+The implementer must first test each obligation of Section 3.4 directly. Lexical parsing is tested from both sides: forms inside the lexical space must parse to the correct value, and forms outside it must be recognised as ill-typed. Value equality is tested across units of the same dimension, including derived units and the dimensionless case. Comparison is tested within one dimension and across dimensions, where the error required by the specification must be raised. Arithmetic is tested over its full type coverage, including scalar operands on both sides of the operator. More than one implementation proved incomplete on exactly this point. The dimension test is checked with compatible and incompatible pairs.
+
+Each obligation must be tested at the level at which the feasibility record claims it. An obligation claimed at the query level needs tests that submit a query to the engine and inspect the results, because a correct method that the engine never calls passes every direct test and still fails the claim. Where an obligation was reframed, the tests target the reframed interface, and no test may suggest that the original form is available. The Python implementation tests at both levels: the quantity class directly, and the full set of operators, ordering, and aggregates again through queries executed by the engine. In the Java implementation the equality mechanism is exercised through its interface but no test submits a query, so the query-level behaviour rests on the engine's documented routing rather than on a test of this extension. The difference between these two positions is exactly what this step must make visible.
+
+The implementer must then test the edge cases recorded during implementation. A query over data containing an ill-typed literal must complete, with the affected solutions excluded. Ordering over mixed dimensions must complete and follow the behaviour chosen for it. The aggregates must preserve units where the implementation claims they do. Precision is tested at scales far above and below the range of ordinary values, where the backend's numeric ceiling either holds or breaks. A literal written out and parsed back must keep its value. Activating the extension more than once must change nothing.
+
+What the feasibility record marked as not achievable must now appear as expected failures. The implementer must write the test that the limitation causes to fail, mark it as an expected failure, and attach the reason. The reason must state whether the cause is a limit inherited from a dependency or a gap in the extension itself, because the two call for different responses from anyone who later builds on the work. A limitation carried this way is checked on every run: if a dependency upgrade removes it, the expected failure starts passing and announces the change. A limitation left out of the suite is silent and stays silent. Across the four implementations the same two families of expected failures recur, whatever the language: the special units of Section 3.3, whose conversion falls outside the algebra every backend implements, and precision loss where a backend computes in a bounded numeric type. A new implementation should expect to document both.
+
+The output of this step is the test suite together with the conformance account it expresses: the obligations met, the level at which each is met, the reframings, and the expected failures with their reasons. This account is what makes the extension's claims checkable by someone who did not build it, and it is the form in which the four implementations are reported in Chapter 6.

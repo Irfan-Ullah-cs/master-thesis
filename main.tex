@@ -1,0 +1,150 @@
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc}
+\usepackage{acro}
+\input{acronyms}
+\usepackage{titlesec}
+\makeatletter
+\renewcommand{\thetable}{\arabic{table}}
+\@removefromreset{table}{chapter}
+% Remove forced new page before each chapter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{\par\vspace{2em}}{}{}
+\makeatother
+% Chapter heading: numbered, reduced to \LARGE (was \Huge)
+\titleformat{\chapter}[hang]{\normalfont\LARGE\bfseries}{\thechapter.}{0.5em}{}
+\titlespacing*{\chapter}{0pt}{3em}{1em}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{references.bib}
+\DeclareSortingTemplate{original}{
+  \sort{\field{sortkey}}
+}
+\ExecuteBibliographyOptions{sorting=original}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\begin{document}
+\pagenumbering{roman}
+\begin{titlepage}
+  % Logos
+  \noindent
+  \begin{minipage}[t]{0.4\textwidth}
+    \raggedright
+    \includegraphics[height=2.5cm]{Logo_de_l'Université_Jean_Monnet_Saint-Etienne.png}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.4\textwidth}
+    \raggedleft
+    \includegraphics[height=2.3cm]{images.png}
+  \end{minipage}
+  \par\vspace{1cm}
+  \centering
+  %% - DEGREE SIDE  -
+  {\large Université de Lyon\par}
+  \vspace{0.25cm}
+  {\normalsize
+    Université Jean Monnet Saint-Étienne
+\textperiodcentered\
+    Mines Saint-Étienne - Institut Mines Télécom\par
+  }
+  \vspace{0.2cm}
+  {\small Master in Computer Science -
+    Cyber-Physical and Social Systems: AI and IoT (CPS2)\par}
+  \vspace{0.6cm}
+  \hrule
+  \vspace{0.8cm}
+  %% - TITLE  --
+  {\Huge\bfseries Representation of Physical Quantities\\[0.3em]
+    on the Semantic Web\par}
+  \vspace{0.8cm}
+  {\normalsize
+    M2 Internship Thesis submitted in partial fulfillment\\
+    of the requirements for the degree of\\[0.2em]
+    \textbf{Master 2 in Computer Science}\par
+  }
+  \vspace{1cm}
+  %% - STUDENT  --
+  {\large Irfan Ullah\par}
+  \vspace{0.2cm}
+  {\small Academic year 2024-2026\par}
+  \vspace{1cm}
+  \hrule
+  \vspace{0.8cm}
+  %% - INTERNSHIP SIDE  ---
+  {\small Mandatory research internship conducted at\par}
+  \vspace{0.2cm}
+  {\normalsize\bfseries
+    Département Informatique et Systèmes Intelligents (ISI)\\
+    Institut Henri Fayol - Mines Saint-Étienne\par}
+  \vspace{0.15cm}
+
+  \vspace{0.15cm}
+  {\small 1 February 2026 - 30 June 2026\par}
+  \vspace{0.6cm}
+{\small Supervised by\par}
+\vspace{0.4cm}
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+  \centering
+  {\normalsize\textbf{Antoine Zimmermann}\par}
+  \vspace{0.1cm}
+  {\small Professor\par}
+  {\small Head of ISI Department\par}
+  {\small Institut Henri Fayol\par}
+  {\small École des Mines de Saint-Étienne\par}
+  {\small LIMOS - UMR CNRS 6158\par}
+  \vspace{0.1cm}
+  {\small \href{mailto:antoine.zimmermann@emse.fr}{antoine.zimmermann@emse.fr}\par}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.47\textwidth}
+  \centering
+  {\normalsize\textbf{Maxime Lefrançois}\par}
+  \vspace{0.1cm}
+  {\small Associate Professor\par}
+  {\small Institut Henri Fayol\par}
+  {\small École des Mines de Saint-Étienne\par}
+  {\small LIMOS - UMR CNRS 6158\par}
+  \vspace{0.1cm}
+  {\small \href{mailto:maxime.lefrancois@emse.fr}{maxime.lefrancois@emse.fr}\par}
+\end{minipage}
+  \vfill
+  {\normalsize \today\par}
+\end{titlepage}
+\clearpage
+\input{abstract}
+\clearpage
+\input{acknowledgement}
+\par\vspace{2em}
+{\normalfont\LARGE\bfseries List of Abbreviations\par}
+\vspace{1em}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\printacronyms[heading=none]
+\clearpage
+\tableofcontents
+% \listoftables
+% \listoffigures
+\clearpage
+\pagenumbering{arabic}
+\input{chapter1}
+% \input{chapter2}
+% \input{chapter3}
+% \input{chapter4}
+% \input{chapter5}
+% \input{chapter6}
+% \input{chapter7}
+\printbibliography[title={References}]
+\end{document}

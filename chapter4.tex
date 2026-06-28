@@ -1,0 +1,85 @@
+\chapter{Implementation Foundations}
+
+This chapter establishes the foundations the methodology builds on. Section 4.1 reviews prior custom datatype implementations, showing that the pattern cdt:ucum follows is established practice rather than an isolated design. Sections 4.2 and 4.3 survey the RDF libraries and the UCUM backends used in the four implementations. Together they supply the material that Step 1 of the methodology in Chapter 5 draws on.
+
+
+\section{Implementations of Other Datatypes}
+
+Section 2.2 established that any IRI can serve as a datatype identifier in RDF, and that a processor recognizing a custom datatype can equip it with a full value space and operator semantics. Three published systems show this mechanism at work in practice.
+
+GeoSPARQL, published by the Open Geospatial Consortium , defines a vocabulary for representing and querying geospatial data in RDF \cite{perry2012geosparql}. It defines two RDFS datatypes. The datatype geo:wktLiteral contains the Well-Known Text serialization of a geometry object as defined by ISO 19125-1, while geo:gmlLiteral contains the Geography Markup Language serialization. A geometry is linked to its literal value through the property geo:asWKT or geo:asGML, and each literal embeds a coordinate reference system URI as a prefix within the lexical form. GeoSPARQL also defines a set of SPARQL extension functions for topological and geometric computation over these literals. The standard was updated as version 1.1 in 2024 \cite{car2024geosparql}.
+
+Hartig et al. present cdt:List and cdt:Map, two custom datatypes for representing composite values as RDF literals \cite{hartig2024datatypes}. A cdt:List literal encodes an ordered sequence; a cdt:Map literal encodes a set of key-value pairs. The approach introduces three SPARQL extensions: a FOLD aggregate that produces composite literals from a group of solutions, functions for accessing and manipulating composite literals within expressions, and an UNFOLD operator that decomposes a composite literal into one solution row per element. Two open-source implementations are provided, one for Apache Jena and one for the Perl-based Attean framework, alongside a formal specification and a test suite.
+
+Marciniak, Sowiński and Ganzha introduce a custom datatype for representing data tensors as RDF literals \cite{marciniak2025representing}. The motivation is the growing demand for integrating machine learning embeddings with knowledge graphs. The lexical form encodes tensor shape and values as a JSON string. The SPARQL extension defines 36 functions enabling the transformation, comparison, and concatenation of tensors, together with four aggregates.
+
+All three cases apply the same pattern. A custom datatype IRI defines a value space and a lexical-to-value mapping for a domain-specific object, and SPARQL-level operators or functions are registered to expose computation over typed literals through native query syntax. cdt:ucum applies this pattern to physical quantities.
+
+
+\section{RDF Libraries}
+
+RDF libraries provide the programmatic infrastructure for working with RDF data. A mature library typically covers parsing and serializing RDF in multiple syntaxes, storing triples in memory or in a persistent backend, and evaluating SPARQL queries. Many also support reasoning over RDFS or OWL axioms and integration with remote triple stores. Libraries differ in which of these features they include, and in how accessible their internals are to extension code. Both differences matter for this thesis.
+
+Apache Jena is an open-source Java framework for building Semantic Web and Linked Data applications [jena.apache.org]. Originally developed at HP Labs, it became an Apache Software Foundation project in 2012; its current release is version 6.x.x. Jena provides a full RDF API for creating, reading, and writing graphs and datasets. Its SPARQL 1.1 engine, ARQ, supports federated queries and text search integration. TDB2 is its native high-performance triple and quad store, and Fuseki is a SPARQL server that exposes the SPARQL Protocol and Graph Store Protocol over HTTP. Jena also supports RDFS and OWL reasoning through multiple configurable reasoners, SHACL validation, and a GeoSPARQL implementation. It is distributed under the Apache License 2.0.
+
+RDFLib is a Python library for working with RDF. Daniel Krech created it in 2002, and it is the primary RDF library in the Python ecosystem. It provides parsers and serializers for the major RDF serializations, including Turtle, RDF/XML, N-Triples, JSON-LD, and TriG. Its graph interface supports in-memory storage, persistent on-disk storage, and remote SPARQL endpoints. It includes a full SPARQL 1.1 implementation for queries and update statements, together with a plugin architecture for extending stores, parsers, and serializers. The current release is 7.x.x. It is distributed under the BSD 3-Clause license.
+
+rdflib.js is a JavaScript RDF library for browsers and Node.js [github.com/\allowbreak linkeddata/\allowbreak rdflib.js]. its current release is version 2.x.x. It reads and writes RDF/XML, Turtle, and N3, and reads RDFa and JSON-LD. It functions as a Read/Write Linked Data client, supporting WebDAV and SPARQL/Update for interacting with remote data sources, and real-time collaborative editing via WebSockets and HTTP PATCH. rdflib.js does not ship a built-in SPARQL query engine; SPARQL interaction is limited to update operations against remote endpoints. It is distributed under the MIT license.
+
+dotNetRDF is a .NET library for parsing, managing, querying, and writing RDF [dotnetrdf.org]. Rob Vesse started it in January 2009, and it is now maintained by the wider community under the MIT license; its current release is version 3.5.x. It provides a complete SPARQL 1.1 implementation through its built-in Leviathan in-memory query engine. It supports the major RDF serialization formats and, from version 3.0, RDF-Star and SPARQL-Star. It also covers SHACL validation and a subset of OWL reasoning. dotNetRDF targets .NET Standard 2.0, making it compatible across .NET Framework 4.7 and later, .NET Core 2.0 and later, and .NET 5 and later. It provides a common API for connecting to triple stores including AllegroGraph, Stardog, and Virtuoso.
+
+Table 1 summarizes the four libraries. GitHub statistics were retrieved in June 2026.
+
+\begin{table}[h]
+\centering
+\caption{Summary of the four RDF libraries}
+\label{tab:rdf-libraries}
+\begin{tabular}{lllrrrrl}
+\toprule
+Library & Language & First release & Stars & Forks & Contributors & Commits \\
+\midrule
+Apache Jena & Java & 2002 & 1.4k & 697 & 144 & 13,020  \\
+RDFLib & Python & 2002 & 2.5k & 593 & 190 & 5,231 \\
+rdflib.js & JavaScript & \textasciitilde{}2012 & 593 & 145 & 47 & 1,687 \\
+dotNetRDF & C\# & 2011 & 322 & 99 & 37 & 5,016  \\
+\bottomrule
+\end{tabular}
+GitHub statistics were retrieved in June 2026
+\end{table}
+
+
+
+\section{UCUM Libraries}
+
+The libraries used across the four implementations fall into two categories. The first contains libraries that parse UCUM expressions and perform unit validation and conversion. The second contains general unit-arithmetic libraries: they maintain their own unit vocabulary and support quantity arithmetic, but do not parse UCUM expressions. The two categories are complementary rather than interchangeable. The Python and java implementations pairs one library from each category; the other three use a single library.
+
+ucumvert is a Python package that parses UCUM unit strings and converts them to Pint quantities [github.com/dalito/ucumvert]. It implements the full UCUM grammar using the Lark parser toolkit [github.com/lark-parser/lark], generating the grammar directly from the official ucum-essence.xml file. It also provides PintUcumRegistry, a subclass of Pint's UnitRegistry that loads all UCUM unit definitions on instantiation. Pint is the arithmetic backend: it represents quantities as numerical values paired with units, supports arithmetic with automatic unit conversion, and raises a dimensionality error for incommensurable quantities [github.com/hgrecco/pint]. The division of labour is clean: ucumvert handles UCUM parsing, Pint handles computation. 
+
+ucum-lhc is a JavaScript library providing validation and conversion services for UCUM, developed by the Lister Hill National Center for Biomedical Communications at the US National Library of Medicine [ucum.nlm.nih.gov/ucum-lhc]. It validates unit strings, converts numeric values between commensurable units, and finds units commensurable with a given expression. It is available as an npm package and as a browser-ready bundle. 
+
+Indriya is the reference implementation of the Units of Measurement API defined by JSR-385 [jcp.org/en/jsr/detail?id=385], a Java Specification Request defining standard interfaces for handling units and quantities [github.com/unitsofmeasurement/indriya]. Indriya covers unit compatibility checks, conversion between units, and arithmetic on quantities. It belongs to the second category: it uses its own unit vocabulary and does not parse UCUM expressions. The UCUM unit definitions are supplied separately by the uom-systems library, which plugs into Indriya's unit framework. It is the arithmetic backend for the Apache Jena implementation in this thesis.
+
+Fhir.Metrics is a C\# library providing a UCUM implementation for the FHIR standard \cite{hl7_fhir_quantity}, developed and maintained by Firely [github.com/FirelyTeam/Fhir.Metrics]. It reads the ucum-essence.xml data file and supports unit parsing, conversion, and quantity comparison. It is distributed as a NuGet package.
+
+Table 2 summarizes the four libraries. GitHub statistics were retrieved on June 16, 2026.
+
+\begin{table}[h]
+\centering
+\caption{Summary of the four UCUM libraries}
+\label{tab:ucum-libraries}
+\begin{tabular}{lllrrrrl}
+\toprule
+Library & Language & First release & Stars & Forks & Contributors & Commits  \\
+\midrule
+pint & python & 2012 & 2.7k & 515 & 2025 & 2933 \\
+ucumvert & Python & 2024 & 15 & 3 & 3 & 103  \\
+Indriya & Java & 2017 & 138 & 48 & 19 & 1,405 \\
+ucum-lhc & JavaScript & 2016 & 63 & 17 & 7 & 990  \\
+uom-systems & Java & 2017 & 38 & 20 & 13 & 671 \\
+Fhir.Metrics & C\# & 2014 & 24 & 15 & 12 & 209 \\
+\bottomrule
+\end{tabular}
+GitHub statistics were retrieved in June 2026
+\end{table}
+
+

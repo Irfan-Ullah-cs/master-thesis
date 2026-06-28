@@ -1,0 +1,42 @@
+\chapter{Background}
+
+
+This chapter introduces the three building blocks, the rest of the thesis depends on: the RDF data model, the typed literal and its datatype mechanism, and the SPARQL query language. The datatype mechanism in Section 2.2 deserves particular attention, since it is the extension point on which cdt:ucum is built.
+
+
+\section{RDF}
+
+The Resource Description Framework (RDF) is a W3C Recommendation for representing information in the Web \cite{cyganiak2014rdf}. Its data model is the triple: a subject, a predicate, and an object. A set of triples forms an RDF graph.
+
+
+RDF 1.1 defines three kinds of node. An IRI is an absolute Unicode string conforming to RFC 3987, and two occurrences of the same IRI in a graph denote the same resource. A blank node has no global identifier; it asserts that some resource with the stated properties exists without assigning it a name. A literal represents a data value, and its structure is defined by a datatype IRI, covered in Section 2.2. A triple's subject is an IRI or a blank node, its predicate is always an IRI, and its object may be any of the three.
+
+
+RDF graphs can be serialized in several concrete syntaxes. Turtle uses compact prefix-based notation and is widely used for authoring and reading \cite{beckett2014turtle}. N-Triples encodes one triple per line with fully expanded IRIs, which makes it suitable for streaming and bulk processing. RDF/XML is the original serialization from the 2004 specification and remains widely supported. JSON-LD encodes RDF as JSON, binding prefixes to IRIs through a @context object, and is widely used in web-facing data publishing. This thesis uses Turtle for all RDF examples.
+
+
+RDF itself imposes no vocabulary on what is being described. RDF Schema extends the model with constructs for defining classes, properties, and hierarchies between them \cite{brickley2014rdfschema}. OWL adds richer axioms covering class equivalence and disjointness, property characteristics, and cardinality \cite{owl2012overview}. Both vocabularies are themselves expressed as RDF triples. Ontologies built with these languages describe the structure and vocabulary of a domain; Chapter 3 introduces the ones used for physical quantities.
+
+
+\section{RDF Literals and Datatypes}
+
+A literal consists of a lexical form and a datatype IRI. The lexical form is a Unicode string. The datatype IRI identifies the type and determines how the lexical form maps to a value. Language-tagged strings carry an additional language tag and use rdf:langString as their datatype IRI.
+
+RDF 1.1 characterizes each datatype by three components. The lexical space is the set of Unicode strings that are valid representations of the type. The value space is the set of values the type can denote. The lexical-to-value mapping assigns each string in the lexical space a value in the value space. Two literals with the same datatype IRI are value-equal when their lexical forms map to the same value, even if the forms themselves differ. A literal whose lexical form falls outside the lexical space of its datatype is ill-typed. Such a literal is syntactically valid RDF, but it carries no value: it can be stored and matched by lexical form, yet it cannot participate in value comparison or arithmetic.
+
+RDF 1.1 recognizes a set of XML Schema built-in datatypes as its default type vocabulary, covering integers, decimals, floating-point numbers, strings, booleans, dates, and times, together with their numeric subtypes. Literals of these recognized types support equality testing and, for ordered types, comparison with the < and > operators. Beyond this set, RDF 1.1 defines two non-XSD built-in datatypes: rdf:HTML for typed HTML content and rdf:XMLLiteral for embedded XML.
+
+The datatype mechanism is not closed to these types. Any IRI can serve as a datatype identifier. A processor that does not recognize a given datatype IRI treats its literals as uninterpreted: two such literals are value-equal if and only if they share the same lexical form and the same datatype IRI, and no further operations are defined over them. A processor that does recognize a custom datatype, whether through built-in support or explicit registration, can equip it with a full value space and operator semantics. This is the mechanism that cdt:ucum exploits, and the one this thesis implements across four RDF libraries.
+
+
+\section{SPARQL}
+
+SPARQL 1.1 is the W3C Recommendation for querying RDF data \cite{harris2013sparql}. It defines four query forms. SELECT returns variable bindings, ASK tests for pattern existence, CONSTRUCT builds a new RDF graph from query results, and DESCRIBE returns a description of a resource. A companion Update language handles graph insertion and deletion. The core construct is the triple pattern: it resembles an RDF triple but may carry a variable in any of the three positions. A set of triple patterns evaluated conjunctively forms a basic graph pattern. Matching a basic graph pattern finds all substitutions of variables with RDF terms that make every pattern consistent with the data, producing a solution sequence of variable-to-term bindings.
+
+FILTER restricts a solution sequence to the solutions for which a given expression evaluates to true. The operands of a FILTER expression are the RDF terms bound to variables in the current solution. SPARQL 1.1 defines evaluation rules for recognized types: the < operator over two xsd:integer literals returns a boolean, and addition over xsd:decimal literals returns a typed numeric literal. For a literal with an unrecognized datatype, these operators raise a type error. The specification states that FILTER removes any solution for which the expression evaluates to false or raises an error. A type error therefore causes the solution to be silently excluded rather than reported as a query failure. This behaviour matters for everything that follows, since it determines how queries over custom-typed literals degrade in an engine without support for them.
+
+BIND assigns the result of an expression to a new variable in the current solution, making the computed value available to subsequent patterns and expressions within the same query. Beyond comparison and arithmetic, SPARQL 1.1 provides a built-in function library covering numeric operations, string manipulation, date and time handling, and type testing.
+
+ORDER BY sorts a solution sequence by one or more expressions. SPARQL 1.1 defines comparison for recognized types: numbers, strings, booleans, and dateTime values each have a specified ordering. For literals with unrecognized datatypes, the specification leaves the relative order undefined; it is implementation-dependent.
+
+SPARQL 1.1 adds aggregate functions that operate over groups of solutions formed by GROUP BY. The built-in aggregates are COUNT, SUM, AVG, MIN, MAX, GROUP\_CONCAT, and SAMPLE. For unit-aware quantity data, SUM and AVG are the most consequential. Both apply arithmetic across group members and require operands of recognized numeric types. When a group member carries an unrecognized datatype, the arithmetic raises a type error and the aggregate result for that group is an error.
