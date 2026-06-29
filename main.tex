@@ -4,7 +4,7 @@
 \usepackage[english]{babel}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage[a4paper,margin=2.0cm]{geometry}
+\usepackage[a4paper,margin=1.80cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -129,10 +129,10 @@
 \clearpage
 \input{acknowledgement}
 \par\vspace{2em}
-{\normalfont\LARGE\bfseries List of Abbreviations\par}
+% {\normalfont\LARGE\bfseries List of Abbreviations\par}
 \vspace{1em}
 \addcontentsline{toc}{chapter}{List of Abbreviations}
-\printacronyms[heading=none]
+% \printacronyms[heading=none]
 \clearpage
 \tableofcontents
 % \listoftables
@@ -140,11 +140,11 @@
 \clearpage
 \pagenumbering{arabic}
 \input{chapter1}
-% \input{chapter2}
-% \input{chapter3}
-% \input{chapter4}
-% \input{chapter5}
-% \input{chapter6}
-% \input{chapter7}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+\input{chapter6}
+\input{chapter7}
 \printbibliography[title={References}]
 \end{document}

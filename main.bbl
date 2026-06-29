@@ -43,39 +43,6 @@
       \field{title}{International vocabulary of metrology - basic and general concepts and associated terms (VIM)}
       \field{year}{2012}
     \endentry
-    \entry{hall2022representing}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=564ad657b753aead4220e04a184703ec}{%
-           family={Hall},
-           familyi={H\bibinitperiod},
-           given={BD},
-           giveni={B\bibinitperiod}}}%
-        {{hash=18a6b7ef358a0ed4ca3dc7469c518159}{%
-           family={Kuster},
-           familyi={K\bibinitperiod},
-           given={M},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{fullhash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{fullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{bibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{authorbibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{authornamehash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{authorfullhash}{e9168676a3035a266e1b33cc6b79ea92}
-      \strng{authorfullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Measurement: Sensors}
-      \field{title}{Representing quantities and units in digital systems}
-      \field{volume}{23}
-      \field{year}{2022}
-      \field{pages}{100387}
-      \range{pages}{1}
-    \endentry
     \entry{keil2018comparison}{article}{}{}
       \name{author}{2}{}{%
         {{hash=e624f2bc675e265ee34db1d4df12cfe4}{%
@@ -134,6 +101,7 @@
       \strng{authornamehash}{26ce58a3cae4815cf1be8a9816b168b4}
       \strng{authorfullhash}{26ce58a3cae4815cf1be8a9816b168b4}
       \strng{authorfullhashraw}{26ce58a3cae4815cf1be8a9816b168b4}
+      \field{extraname}{1}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{European Semantic Web Conference}
@@ -141,6 +109,953 @@
       \field{year}{2018}
       \field{pages}{196\bibrangedash 201}
       \range{pages}{6}
+    \endentry
+    \entry{hodgson2014quantities}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=6f0cbedf52bd195302e6e911cba6bc99}{%
+           family={Hodgson},
+           familyi={H\bibinitperiod},
+           given={Ralph},
+           giveni={R\bibinitperiod}}}%
+        {{hash=837625d48842ea5c505295eb05c41f11}{%
+           family={Keller},
+           familyi={K\bibinitperiod},
+           given={Paul\bibnamedelima J},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=b63d4ace575e3c10b09c5f4fa6a5a194}{%
+           family={Hodges},
+           familyi={H\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c665748c3f398ee1d29f4e5848a11b1f}{%
+           family={Spivak},
+           familyi={S\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{2}{%
+        {Technical report, TopQuadrant}%
+        {NASA}%
+      }
+      \strng{namehash}{a1f00768074e8df0ef808852d5c024cc}
+      \strng{fullhash}{e5756f82a11dda7a1caefeabb3028f57}
+      \strng{fullhashraw}{e5756f82a11dda7a1caefeabb3028f57}
+      \strng{bibnamehash}{a1f00768074e8df0ef808852d5c024cc}
+      \strng{authorbibnamehash}{a1f00768074e8df0ef808852d5c024cc}
+      \strng{authornamehash}{a1f00768074e8df0ef808852d5c024cc}
+      \strng{authorfullhash}{e5756f82a11dda7a1caefeabb3028f57}
+      \strng{authorfullhashraw}{e5756f82a11dda7a1caefeabb3028f57}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Quantities, units, dimensions and data types ontologies (QUDT)}
+      \field{type}{techreport}
+      \field{year}{2014}
+    \endentry
+    \entry{vanassem2013ontology}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=276a9b87ef811d24a70570aa974a1600}{%
+           family={Rijgersberg},
+           familyi={R\bibinitperiod},
+           given={Hajo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0b993b5d4a5d47805d5994ce0d0765dc}{%
+           family={Van\bibnamedelima Assem},
+           familyi={V\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e26246c8373bde330d8899eacdcab5b9}{%
+           family={Top},
+           familyi={T\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage UK: London, England}%
+      }
+      \strng{namehash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{fullhash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{fullhashraw}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{bibnamehash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{authorbibnamehash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{authornamehash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{authorfullhash}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \strng{authorfullhashraw}{c4c321c965e3b72b27e7619bb5b1e31e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semantic Web}
+      \field{number}{1}
+      \field{title}{Ontology of units of measure and related concepts}
+      \field{volume}{4}
+      \field{year}{2013}
+      \field{pages}{3\bibrangedash 13}
+      \range{pages}{11}
+    \endentry
+    \entry{car2024geosparql}{report}{}{}
+      \name{author}{8}{}{%
+        {{hash=4920fb4968fd8705f91d55cbe2b2eb87}{%
+           family={Car},
+           familyi={C\bibinitperiod},
+           given={N.\bibnamedelimi J.},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=eade071f20b3bd2e74f5f83eae24f014}{%
+           family={Homburg},
+           familyi={H\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3bf5b9f67e943e07607682d3cb977e19}{%
+           family={Perry},
+           familyi={P\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8ef406161ccea3b0e71c03ef63a47855}{%
+           family={Herring},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=25c2b973c9afd31f2a6061e3d7dd40a0}{%
+           family={Knibbe},
+           familyi={K\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=5aa2081d8484594d696055c82c4501c2}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={S.\bibnamedelimi J.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=302c9cbcb9a498cf50f458fb8285e598}{%
+           family={Abhayaratna},
+           familyi={A\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fad597ae3e7a373258e4b443dbaf57c3}{%
+           family={Bonduel},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Open Geospatial Consortium}%
+      }
+      \strng{namehash}{1b24f9c9b47e84d69d6541912faa85ce}
+      \strng{fullhash}{f3da6f93019e5d67c1152ebc0853268b}
+      \strng{fullhashraw}{f3da6f93019e5d67c1152ebc0853268b}
+      \strng{bibnamehash}{1b24f9c9b47e84d69d6541912faa85ce}
+      \strng{authorbibnamehash}{1b24f9c9b47e84d69d6541912faa85ce}
+      \strng{authornamehash}{1b24f9c9b47e84d69d6541912faa85ce}
+      \strng{authorfullhash}{f3da6f93019e5d67c1152ebc0853268b}
+      \strng{authorfullhashraw}{f3da6f93019e5d67c1152ebc0853268b}
+      \field{sortinit}{0}
+      \field{sortinithash}{c5602f03f17cc894ea7a6362c3cb0e13}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Version 1.1}
+      \field{number}{OGC 22-047}
+      \field{title}{{OGC} {GeoSPARQL} - A Geographic Query Language for {RDF} Data}
+      \field{type}{OGC Implementation Standard}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb http://www.opengis.net/doc/IS/geosparql/1.1
+      \endverb
+      \verb{url}
+      \verb http://www.opengis.net/doc/IS/geosparql/1.1
+      \endverb
+    \endentry
+    \entry{cyganiak2014rdf}{report}{}{}
+      \name{author}{3}{}{%
+        {{hash=e9ba0efc60ec51dee9198bc121c81e12}{%
+           family={Cyganiak},
+           familyi={C\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8abcd91c7d8bbe2c158bc2683a684c4b}{%
+           family={Wood},
+           familyi={W\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c7da649ed311deb4d5c7dfc82a6874ef}{%
+           family={Lanthaler},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{fullhash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{fullhashraw}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{bibnamehash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{authorbibnamehash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{authornamehash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{authorfullhash}{c194b214c8d6ee8866ac47051801e7b5}
+      \strng{authorfullhashraw}{c194b214c8d6ee8866ac47051801e7b5}
+      \field{sortinit}{0}
+      \field{sortinithash}{c5602f03f17cc894ea7a6362c3cb0e13}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{{RDF} 1.1 Concepts and Abstract Syntax}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/rdf11-concepts/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/rdf11-concepts/
+      \endverb
+    \endentry
+    \entry{hartig2024datatypes}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=4bbcb2ab668221199af105dcd27fad65}{%
+           family={Hartig},
+           familyi={H\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=1d0078de25cb7031ad42e60492327b98}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={G.\bibnamedelimi T.},
+           giveni={G\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=e4ea16f7538b0a87fbf3b03dc9ed846e}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=00daa923f4208616e58ca5d8d756324c}{%
+           family={Lassila},
+           familyi={L\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=f0764f9e7c7d500ac4fe48d991abc0ce}{%
+           family={Lopez\bibnamedelima Enriquez},
+           familyi={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+           given={C.\bibnamedelimi M.},
+           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=cf88e5674affe66edbf7471bc4954a7d}{%
+           family={Thompson},
+           familyi={T\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{e393f0e25023c28c76b38a64eb9a21a1}
+      \strng{fullhash}{68403abee573b612865f463b4a0b5071}
+      \strng{fullhashraw}{68403abee573b612865f463b4a0b5071}
+      \strng{bibnamehash}{e393f0e25023c28c76b38a64eb9a21a1}
+      \strng{authorbibnamehash}{e393f0e25023c28c76b38a64eb9a21a1}
+      \strng{authornamehash}{e393f0e25023c28c76b38a64eb9a21a1}
+      \strng{authorfullhash}{68403abee573b612865f463b4a0b5071}
+      \strng{authorfullhashraw}{68403abee573b612865f463b4a0b5071}
+      \field{sortinit}{0}
+      \field{sortinithash}{c5602f03f17cc894ea7a6362c3cb0e13}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of Posters and Demos at the 21st Extended Semantic Web Conference ({ESWC} 2024)}
+      \field{month}{5}
+      \field{title}{Datatypes for Lists and Maps in {RDF} Literals}
+      \field{venue}{Hersonissos, Greece}
+      \field{year}{2024}
+      \field{pages}{234\bibrangedash 238}
+      \range{pages}{5}
+      \verb{urlraw}
+      \verb https://2024.eswc-conferences.org/wp-content/uploads/2024/05/77770226.pdf
+      \endverb
+      \verb{url}
+      \verb https://2024.eswc-conferences.org/wp-content/uploads/2024/05/77770226.pdf
+      \endverb
+    \endentry
+    \entry{harris2013sparql}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=dfb3ec282ed99a39f1c52ec497cc78ad}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7f767afbf588899376b162f875e1e8f1}{%
+           family={Seaborne},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{fullhash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{fullhashraw}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{bibnamehash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{authorbibnamehash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{authornamehash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{authorfullhash}{ce33bbc36b1b090a00b8028d64f37858}
+      \strng{authorfullhashraw}{ce33bbc36b1b090a00b8028d64f37858}
+      \field{sortinit}{0}
+      \field{sortinithash}{c5602f03f17cc894ea7a6362c3cb0e13}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{3}
+      \field{title}{{SPARQL} 1.1 Query Language}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/sparql11-query/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/sparql11-query/
+      \endverb
+    \endentry
+    \entry{lefrancois2021lindt}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=f24a2f409f353b06c5c66baaa3446ec2}{%
+           family={Lefrançois},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=921af46dc67b6f3834fe738ef3799b17}{%
+           family={Zimmermann},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {École des Mines de Saint-Étienne}%
+      }
+      \strng{namehash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{fullhash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{fullhashraw}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{bibnamehash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{authorbibnamehash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{authornamehash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{authorfullhash}{35fea45b2e69f54a54a6cb805c925a2b}
+      \strng{authorfullhashraw}{35fea45b2e69f54a54a6cb805c925a2b}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{LINDT} Custom Datatypes Specification}
+      \field{type}{Technical specification}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://w3id.org/lindt/custom_datatypes
+      \endverb
+      \verb{url}
+      \verb https://w3id.org/lindt/custom_datatypes
+      \endverb
+    \endentry
+    \entry{marciniak2025representing}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=202c85b65a54382b76ae1916fb5ad48c}{%
+           family={Marciniak},
+           familyi={M\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=1e624de480fca2d6cfb8b2d9aad2aa67}{%
+           family={Sowiński},
+           familyi={S\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5addeebb70c5f4cfeaf77fd5e013996d}{%
+           family={Ganzha},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{fullhash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{fullhashraw}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{bibnamehash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{authorbibnamehash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{authornamehash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{authorfullhash}{44c27af5a61a5b7f853c52570d037d45}
+      \strng{authorfullhashraw}{44c27af5a61a5b7f853c52570d037d45}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{The Semantic Web: {ESWC} 2025 Satellite Events}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{title}{Representing and querying data tensors in {RDF} and {SPARQL}}
+      \field{venue}{Portorož, Slovenia}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.48550/arXiv.2504.19224
+      \endverb
+      \verb{eprint}
+      \verb 2504.19224
+      \endverb
+    \endentry
+    \entry{perry2012geosparql}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=3bf5b9f67e943e07607682d3cb977e19}{%
+           family={Perry},
+           familyi={P\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8ef406161ccea3b0e71c03ef63a47855}{%
+           family={Herring},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Open Geospatial Consortium}%
+      }
+      \strng{namehash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{fullhash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{fullhashraw}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{bibnamehash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{authorbibnamehash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{authornamehash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{authorfullhash}{c368aceef0389fe9d4d58b20833992e7}
+      \strng{authorfullhashraw}{c368aceef0389fe9d4d58b20833992e7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{OGC 11-052r4}
+      \field{title}{{OGC} {GeoSPARQL} - A Geographic Query Language for {RDF} Data}
+      \field{type}{OGC Implementation Standard}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://www.ogc.org/standard/geosparql/
+      \endverb
+      \verb{url}
+      \verb https://www.ogc.org/standard/geosparql/
+      \endverb
+    \endentry
+    \entry{schadow_ucum}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=faadbca636915b98c4bc1f76e05ea48c}{%
+           family={Schadow},
+           familyi={S\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=d02536def8754d9305ae897044ccf35a}{%
+           family={McDonald},
+           familyi={M\bibinitperiod},
+           given={C.\bibnamedelimi J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Regenstrief Institute}%
+      }
+      \strng{namehash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{fullhash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{fullhashraw}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{bibnamehash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{authorbibnamehash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{authornamehash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{authorfullhash}{57c4d2234c84eadbf1e0cafc57af8576}
+      \strng{authorfullhashraw}{57c4d2234c84eadbf1e0cafc57af8576}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Unified Code for Units of Measure}
+      \field{type}{techreport}
+      \verb{urlraw}
+      \verb https://ucum.org/ucum
+      \endverb
+      \verb{url}
+      \verb https://ucum.org/ucum
+      \endverb
+    \endentry
+    \entry{brickley2014rdfschema}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=89709193c0f97d359cee01a0ea4ee778}{%
+           family={Brickley},
+           familyi={B\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=bbcd1770e4aca99d0a1e679b1fb04491}{%
+           family={Guha},
+           familyi={G\bibinitperiod},
+           given={R.\bibnamedelimi V.},
+           giveni={R\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{fullhash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{fullhashraw}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{bibnamehash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{authorbibnamehash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{authornamehash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{authorfullhash}{37cc0903df8f473a2f2b7979116c097b}
+      \strng{authorfullhashraw}{37cc0903df8f473a2f2b7979116c097b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{{RDF} Schema 1.1}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/rdf-schema/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/rdf-schema/
+      \endverb
+    \endentry
+    \entry{owl2012overview}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=cb320ec3867effa6aeda100c390936b2}{%
+           family={{W3C OWL Working Group}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{fullhash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{fullhashraw}{cb320ec3867effa6aeda100c390936b2}
+      \strng{bibnamehash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{authorbibnamehash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{authornamehash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{authorfullhash}{cb320ec3867effa6aeda100c390936b2}
+      \strng{authorfullhashraw}{cb320ec3867effa6aeda100c390936b2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Second}
+      \field{month}{12}
+      \field{title}{{OWL} 2 Web Ontology Language: Document Overview}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/owl2-overview/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/owl2-overview/
+      \endverb
+    \endentry
+    \entry{beckett2014turtle}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=c7350cdf8304905b73931c2071709451}{%
+           family={Beckett},
+           familyi={B\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=89ce6361749d05e9c8f47cae979594e9}{%
+           family={Berners-Lee},
+           familyi={B\bibinithyphendelim L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=64e606a254716df849868c93bbe19552}{%
+           family={Prud'hommeaux},
+           familyi={P\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=1e06530a5ae1b4eb97f0d84aabe90bdf}{%
+           family={Carothers},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{ce5c201f0a5e1a01b38d59ea2ee9eb89}
+      \strng{fullhash}{b0cd363bb8861cce3e13ff0f92ce72b4}
+      \strng{fullhashraw}{b0cd363bb8861cce3e13ff0f92ce72b4}
+      \strng{bibnamehash}{ce5c201f0a5e1a01b38d59ea2ee9eb89}
+      \strng{authorbibnamehash}{ce5c201f0a5e1a01b38d59ea2ee9eb89}
+      \strng{authornamehash}{ce5c201f0a5e1a01b38d59ea2ee9eb89}
+      \strng{authorfullhash}{b0cd363bb8861cce3e13ff0f92ce72b4}
+      \strng{authorfullhashraw}{b0cd363bb8861cce3e13ff0f92ce72b4}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{{RDF} 1.1 Turtle}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/turtle/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/turtle/
+      \endverb
+    \endentry
+    \entry{nema_dicom}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=17a60495031940cf25be076360f1741a}{%
+           family={{NEMA (National Electrical Manufacturers Association)}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{17a60495031940cf25be076360f1741a}
+      \strng{fullhash}{17a60495031940cf25be076360f1741a}
+      \strng{fullhashraw}{17a60495031940cf25be076360f1741a}
+      \strng{bibnamehash}{17a60495031940cf25be076360f1741a}
+      \strng{authorbibnamehash}{17a60495031940cf25be076360f1741a}
+      \strng{authornamehash}{17a60495031940cf25be076360f1741a}
+      \strng{authorfullhash}{17a60495031940cf25be076360f1741a}
+      \strng{authorfullhashraw}{17a60495031940cf25be076360f1741a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{{DICOM} {PS3}.16}
+      \field{title}{Digital Imaging and Communications in Medicine ({DICOM}), Part 16: Content Mapping Resource, Section 7.2.2 (Units of Measurement)}
+      \verb{urlraw}
+      \verb https://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_7.2.2.html
+      \endverb
+      \verb{url}
+      \verb https://dicom.nema.org/medical/dicom/current/output/chtml/part16/sect_7.2.2.html
+      \endverb
+    \endentry
+    \entry{mcdonald2003loinc}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{6}{}{%
+        {{hash=d02536def8754d9305ae897044ccf35a}{%
+           family={McDonald},
+           familyi={M\bibinitperiod},
+           given={C.\bibnamedelimi J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=111d3d8c1e4ecfba640f1f97d92abde0}{%
+           family={Huff},
+           familyi={H\bibinitperiod},
+           given={S.\bibnamedelimi M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=52b514939ab405412fd843fb1a802a70}{%
+           family={Suico},
+           familyi={S\bibinitperiod},
+           given={J.\bibnamedelimi G.},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=4fca048ab1929a5de34306fc3e223dbb}{%
+           family={Hill},
+           familyi={H\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=87addc031d27b74eae7178807327f9b7}{%
+           family={Leavelle},
+           familyi={L\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a225d236700a2e0076bb3d0e35a85fb2}{%
+           family={Aller},
+           familyi={A\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{953a37d65945d74536dc56bcd6d18207}
+      \strng{fullhash}{b7072bbb7f552750508b8632c3b1cd88}
+      \strng{fullhashraw}{b7072bbb7f552750508b8632c3b1cd88}
+      \strng{bibnamehash}{953a37d65945d74536dc56bcd6d18207}
+      \strng{authorbibnamehash}{953a37d65945d74536dc56bcd6d18207}
+      \strng{authornamehash}{953a37d65945d74536dc56bcd6d18207}
+      \strng{authorfullhash}{b7072bbb7f552750508b8632c3b1cd88}
+      \strng{authorfullhashraw}{b7072bbb7f552750508b8632c3b1cd88}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Clinical Chemistry}
+      \field{note}{For the Laboratory {LOINC} Developers}
+      \field{number}{4}
+      \field{title}{{LOINC}, a Universal Standard for Identifying Laboratory Observations: A 5-Year Update}
+      \field{volume}{49}
+      \field{year}{2003}
+      \field{pages}{624\bibrangedash 633}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1373/49.4.624
+      \endverb
+    \endentry
+    \entry{hl7_fhir_quantity}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f05e794fd26811501f96c23af98463f8}{%
+           family={{HL7 International}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{f05e794fd26811501f96c23af98463f8}
+      \strng{fullhash}{f05e794fd26811501f96c23af98463f8}
+      \strng{fullhashraw}{f05e794fd26811501f96c23af98463f8}
+      \strng{bibnamehash}{f05e794fd26811501f96c23af98463f8}
+      \strng{authorbibnamehash}{f05e794fd26811501f96c23af98463f8}
+      \strng{authornamehash}{f05e794fd26811501f96c23af98463f8}
+      \strng{authorfullhash}{f05e794fd26811501f96c23af98463f8}
+      \strng{authorfullhashraw}{f05e794fd26811501f96c23af98463f8}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{FHIR} (Fast Healthcare Interoperability Resources) - Data Types: Quantity}
+      \verb{urlraw}
+      \verb https://hl7.org/fhir/datatypes.html#Quantity
+      \endverb
+      \verb{url}
+      \verb https://hl7.org/fhir/datatypes.html#Quantity
+      \endverb
+    \endentry
+    \entry{iso2012_11240}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=5b512ee8a59deb284ad0a6a035ba10b1}{%
+           family={{ISO}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Organization for Standardization}%
+      }
+      \strng{namehash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{fullhash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{fullhashraw}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{bibnamehash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{authorbibnamehash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{authornamehash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{authorfullhash}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \strng{authorfullhashraw}{5b512ee8a59deb284ad0a6a035ba10b1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{{ISO} 11240:2012}
+      \field{title}{Health Informatics: Identification of Medicinal Products - Data Elements and Structures for the Unique Identification and Exchange of Units of Measurement}
+      \field{type}{techreport}
+      \field{year}{2012}
+    \endentry
+    \entry{madin2007ontology}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=18ce34b673d67e9b9de2b31a952ab5e1}{%
+           family={Madin},
+           familyi={M\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=47727780e0e5d4f6cbf83a1935e154de}{%
+           family={Bowers},
+           familyi={B\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ac65610534f13858c5842253ff16587c}{%
+           family={Schildhauer},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b84d4099bf2579029cb9be3d263d50c5}{%
+           family={Krivov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4d7e7808785f3f00faa0f1eb2470d6ee}{%
+           family={Pennington},
+           familyi={P\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=17838498fbab68d1019ed0669c20f9db}{%
+           family={Villa},
+           familyi={V\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{a2ee8cd57474673364bbc229bac0392d}
+      \strng{fullhash}{cd662f4a3c19ebf3474903ffc9678667}
+      \strng{fullhashraw}{cd662f4a3c19ebf3474903ffc9678667}
+      \strng{bibnamehash}{a2ee8cd57474673364bbc229bac0392d}
+      \strng{authorbibnamehash}{a2ee8cd57474673364bbc229bac0392d}
+      \strng{authornamehash}{a2ee8cd57474673364bbc229bac0392d}
+      \strng{authorfullhash}{cd662f4a3c19ebf3474903ffc9678667}
+      \strng{authorfullhashraw}{cd662f4a3c19ebf3474903ffc9678667}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecological Informatics}
+      \field{number}{3}
+      \field{title}{An ontology for describing and synthesizing ecological observation data}
+      \field{volume}{2}
+      \field{year}{2007}
+      \field{pages}{279\bibrangedash 296}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1016/j.ecoinf.2007.05.004
+      \endverb
+    \endentry
+    \entry{raskin2005knowledge}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2bfe59f8ae3f609656255582618467d2}{%
+           family={Raskin},
+           familyi={R\bibinitperiod},
+           given={R.\bibnamedelimi G.},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=9ea5d6c74feca3adc1c65360c6603aef}{%
+           family={Pan},
+           familyi={P\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{fullhash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{fullhashraw}{951330281f2a9325491e7b1d821c93eb}
+      \strng{bibnamehash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{authorbibnamehash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{authornamehash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{authorfullhash}{951330281f2a9325491e7b1d821c93eb}
+      \strng{authorfullhashraw}{951330281f2a9325491e7b1d821c93eb}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computers \& Geosciences}
+      \field{number}{9}
+      \field{title}{Knowledge representation in the semantic web for Earth and environmental terminology ({SWEET})}
+      \field{volume}{31}
+      \field{year}{2005}
+      \field{pages}{1119\bibrangedash 1125}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.cageo.2004.12.004
+      \endverb
+    \endentry
+    \entry{ieee2019_754}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=472abfae8142fdb6f39d081303e8af85}{%
+           family={{IEEE}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {{IEEE} Computer Society}%
+      }
+      \strng{namehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{fullhash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{fullhashraw}{472abfae8142fdb6f39d081303e8af85}
+      \strng{bibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorbibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authornamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorfullhash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorfullhashraw}{472abfae8142fdb6f39d081303e8af85}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{{IEEE} Std 754-2019}
+      \field{title}{{IEEE} Standard for Floating-Point Arithmetic}
+      \field{type}{techreport}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1109/IEEESTD.2019.8766229
+      \endverb
+    \endentry
+    \entry{hall2022representing}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=564ad657b753aead4220e04a184703ec}{%
+           family={Hall},
+           familyi={H\bibinitperiod},
+           given={BD},
+           giveni={B\bibinitperiod}}}%
+        {{hash=18a6b7ef358a0ed4ca3dc7469c518159}{%
+           family={Kuster},
+           familyi={K\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{fullhash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{fullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{bibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorbibnamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authornamehash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorfullhash}{e9168676a3035a266e1b33cc6b79ea92}
+      \strng{authorfullhashraw}{e9168676a3035a266e1b33cc6b79ea92}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Measurement: Sensors}
+      \field{title}{Representing quantities and units in digital systems}
+      \field{volume}{23}
+      \field{year}{2022}
+      \field{pages}{100387}
+      \range{pages}{1}
+    \endentry
+    \entry{haller2019sosa}{article}{}{}
+      \name{author}{10}{}{%
+        {{hash=f5f9e34f0f94cb29697bb1ea72190579}{%
+           family={Haller},
+           familyi={H\bibinitperiod},
+           given={Armin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f8032db780b653246bf029dcbffb6859}{%
+           family={Janowicz},
+           familyi={J\bibinitperiod},
+           given={Krzysztof},
+           giveni={K\bibinitperiod}}}%
+        {{hash=9739cb225b25807f7d9c9dd037f3ae2d}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={Simon\bibnamedelima J.D.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=36ea51918966dde7b9dd325ba6f9147b}{%
+           family={Lefrançois},
+           familyi={L\bibinitperiod},
+           given={Maxime},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5c5b704b7d5a66e491f4ca4623626b1f}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={Kerry},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b196fe8a127bf7b51afbf4093fa9c3a2}{%
+           family={Phuoc},
+           familyi={P\bibinitperiod},
+           given={Danh\bibnamedelima Le},
+           giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=e295c9d28dd6e0eba007034405eed0fd}{%
+           family={Lieberman},
+           familyi={L\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a8a7365aa5a1323d9505308c1d14d3d1}{%
+           family={García-Castro},
+           familyi={G\bibinithyphendelim C\bibinitperiod},
+           given={Raúl},
+           giveni={R\bibinitperiod}}}%
+        {{hash=bef5c480a5aa7f174e274917087cc380}{%
+           family={Atkinson},
+           familyi={A\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ac731a9ab40708bd9c8c684602791eda}{%
+           family={Stadler},
+           familyi={S\bibinitperiod},
+           given={Claus},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{550198f49e06ab025a2e370bad7a754c}
+      \strng{fullhash}{9c02924502378081327f7c97a0357195}
+      \strng{fullhashraw}{9c02924502378081327f7c97a0357195}
+      \strng{bibnamehash}{550198f49e06ab025a2e370bad7a754c}
+      \strng{authorbibnamehash}{550198f49e06ab025a2e370bad7a754c}
+      \strng{authornamehash}{550198f49e06ab025a2e370bad7a754c}
+      \strng{authorfullhash}{9c02924502378081327f7c97a0357195}
+      \strng{authorfullhashraw}{9c02924502378081327f7c97a0357195}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semantic Web}
+      \field{number}{1}
+      \field{title}{The modular SSN ontology: A joint W3C and OGC standard specifying the semantics of sensors, observations, sampling, and actuation}
+      \field{volume}{10}
+      \field{year}{2018}
+      \field{pages}{9\bibrangedash 32}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.3233/SW-180320
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

@@ -1,38 +1,52 @@
-\chapter{Representation of Physical Quantities in the Semantic Web}
+\chapter{Representation of Physical Quantities on the Semantic Web}
 
-This chapter examines the representation problem introduced in Chapter 1. Section 3.1 presents the ontology-based approaches that constitute current practice. Section 3.2 analyses their limitations in detail, ordered from the most fundamental to the least. Section 3.3 introduces UCUM, the code system whose grammar resolves the coverage problem structurally. Section 3.4 presents the CDT specification, which builds on UCUM to address the remaining problems at the datatype level.
-
+This part examines the representation problem introduced in Section~1. 
+Section~3.1 presents the ontology-based approaches that constitute current practice. 
+Section~3.2 analyses their limitations in detail, ordered from the most fundamental to the least. 
+Section~3.3 introduces \ac{ucum}, the code system whose grammar resolves the coverage problem structurally. 
+Section~3.4 presents the \ac{cdt} specification, which builds on \ac{ucum} to address the  problems at the datatype level.
 
 \section{Ontology-Based Approaches}
 
-The standard approach to representing physical quantities on the Semantic Web is ontology-based. Several ontologies have been developed for this purpose. Keil and Schindler evaluated eight of them: MUO, OBOE, OM, QU, QUDT, SWEET, UO, and Wikidata \cite{keil2018comparison}. QUDT and OM, examined in detail below, share one structural commitment: a single quantity value requires a blank node or named individual and several triples.
+The standard approach to representing physical quantities on the Semantic Web is ontology-based. 
+Several ontologies have been developed for this purpose. 
+Keil and Schindler evaluated eight of them: \ac{muo}, \ac{oboe}, \ac{om}, \ac{qu}, \ac{qudt}, \ac{sweet}, \ac{uo}, and Wikidata \cite{keil2018comparison}. 
+\ac{qudt} and \ac{om}, examined in detail below, share one structural commitment: a single quantity value requires either a named individual or a blank node, together with several triples.
 
-QUDT (Quantities, Units, Dimensions and Data Types Ontologies), originating from a NASA initiative, organises units within a hierarchy of quantity kinds and dimensions \cite{hodgson2014quantities}. In QUDT 1.1, a quantity value is represented as a blank node typed as qudt:QuantityValue. The magnitude is carried by qudt:numericValue as an xsd:double; the unit is referenced by qudt:unit as a named individual. The following Turtle fragment illustrates the QUDT 1.1 encoding pattern:
+\ac{qudt}, originating from a \ac{nasa} initiative, organises units within a hierarchy of quantity kinds and dimensions \cite{hodgson2014quantities}. 
+In \ac{qudt}, a quantity value is represented as a resource typed as \textsf{qudt:QuantityValue}. 
+The magnitude is carried by \textsf{qudt:numericValue} as a numeric \ac{xsd} literal, such as \textsf{xsd:double}, \textsf{xsd:decimal}, or \textsf{xsd:integer}; the unit is referenced by \textsf{qudt:unit} as a named individual. 
+The following Turtle fragment illustrates the current \ac{qudt} encoding pattern:
 
 \begin{verbatim}
-@prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix qudt-1-1: <http://qudt.org/1.1/schema/qudt#> .
-@prefix qudt-unit-1-1: <http://qudt.org/1.1/vocab/unit#> .
+@prefix sosa:  <http://www.w3.org/ns/sosa/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
+@prefix unit:  <http://qudt.org/vocab/unit/> .
 
 <Observation/234534> a sosa:Observation ;
-   rdfs:comment "Observation of the difference between the 
+   rdfs:comment "Observation of the difference between the
         outside temperature and the inside temperature."@en ;
    sosa:hasFeatureOfInterest <apartment/134> ;
    sosa:hasResult [
-      a qudt-1-1:QuantityValue ;
-      qudt-1-1:unit qudt-unit-1-1:DegreeCelsius ;
-      qudt-1-1:numericValue "-29.9"^^xsd:double ] .
+      a qudt:QuantityValue ;
+      qudt:unit unit:DEG_C ;
+      qudt:numericValue "-29.9"^^xsd:double ] .
 \end{verbatim}
 
-Four triples encode one quantity value. The magnitude and the unit are separated across two independent statements on the blank node, and no shared type binds them together. QUDT also encodes dimensional structure: each unit carries a qudt:hasDimensionVector property linking it to a vector of exponents over the fundamental dimensions, and a qudt:conversionMultiplier relating it to its SI base equivalent \cite{hodgson2014quantities}.
+Four triples encode one quantity value. 
+The magnitude and the unit are separated across two independent statements on the blank node, and no shared type binds them together. \ac{qudt} also encodes dimensional structure: each unit carries a \textsf{qudt:hasDimensionVector} property linking it to a vector of exponents over the fundamental dimensions, and a \textsf{qudt:conversionMultiplier} relating it to its \ac{si} base equivalent \cite{hodgson2014quantities}.
 
-OM (Ontology of units of Measure), described by Rijgersberg, van Assem, and Top, follows a comparable reification pattern with finer-grained unit groupings \cite{vanassem2013ontology}. A quantity value is an om:Measure blank node carrying a numeric value and a unit reference. An equivalent encoding in OM is:
+\ac{om} , described by Rijgersberg, van Assem, and Top, follows a comparable reification pattern with finer-grained unit groupings \cite{vanassem2013ontology}. 
+A quantity value is an \textsf{om:Measure} blank node carrying a numeric value and a unit reference. 
+An equivalent encoding in \ac{om} is:
 
 \begin{verbatim}
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix om:   <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 
 <Observation/234534> a sosa:Observation ;
    rdfs:comment "Observation of the difference between the 
@@ -44,44 +58,114 @@ OM (Ontology of units of Measure), described by Rijgersberg, van Assem, and Top,
       om:hasNumericalValue "-29.9"^^xsd:double ] .
 \end{verbatim}
 
-The structural commitment is the same: a blank node, a type triple, a magnitude triple, and a unit triple. OM provides more refined coverage than QUDT 1.1 and finer-grained quantity kind hierarchies, but the reification pattern does not change. OM also encodes dimensional structure, through properties such as SI\_mass\_dimension\_exponent and SI\_length\_dimension\_exponent on dimension individuals \cite{vanassem2013ontology}.
+The structural commitment is the same: a blank node, a type triple, a magnitude triple, and a unit triple. 
+\ac{om} provides more refined coverage than \ac{qudt} and finer-grained quantity kind hierarchies, but the reification pattern does not change. 
+\ac{om} also encodes dimensional structure, through properties such as \textsf{SI\_mass\_dimension\_exponent} and \textsf{SI\_length\_dimension\_exponent} on dimension individuals \cite{vanassem2013ontology}.
 
 SOSA and SSN, published as a joint W3C and OGC Recommendation, take an observation-centric approach \cite{haller2019sosa}. A sensor observation is modelled as a sosa:Observation linked to a result via sosa:hasResult. SOSA and SSN do not prescribe how the numeric value and unit are encoded within the result; they are typically combined with QUDT or OM for that purpose. The observation structure therefore adds further triples ( as can be seen in the previous examples) on top of the quantity value pattern from whichever unit ontology is used.
 
-Several further ontologies address the same problem space. MUO (Measurement Units Ontology) originated as a project to apply semantics in mobile environments, with its individuals automatically generated from UCUM \cite{keil2018comparison}. OBOE (Extensible Observation Ontology) takes an observation-centric approach developed primarily for ecological and scientific measurement scenarios \cite{madin2007ontology}. QU (Quantities and Units Ontology) is a showcase ontology based on the OMG SysML 1.2 QUDV specification and the UN/CEFACT Recommendation 20 code list, published through the W3C Semantic Sensor Network Incubator Group \cite{keil2018comparison}. SWEET (Semantic Web for Earth and Environmental Terminology), developed at NASA's Jet Propulsion Laboratory, covers a broad earth science vocabulary that includes units of measurement \cite{raskin2005knowledge}. UO (Units of Measurement Ontology), part of the OBO Foundry, models units alongside the Phenotypic Quality Ontology (PATO), oriented towards biological and biomedical measurement \cite{keil2018comparison}.
+Several further ontologies address the same problem space. 
+\ac{muo} originated as a project to apply semantics in mobile environments, with its individuals automatically generated from \ac{ucum} \cite{keil2018comparison}. 
+\ac{oboe} takes an observation-centric approach developed primarily for ecological and scientific measurement scenarios \cite{madin2007ontology}. 
+\ac{qu} is a showcase ontology based on the \ac{omg} SysML 1.2 \ac{qudv} specification and the \ac{uncefact} Recommendation 20 code list, published through the \ac{w3c} Semantic Sensor Network Incubator Group \cite{keil2018comparison}. 
+\ac{sweet} covers a broad earth science vocabulary that includes units of measurement \cite{raskin2005knowledge}. 
+\ac{uo}, part of the \ac{obo} Foundry, models units alongside the \ac{pato} \cite{keil2018comparison}.
 
 \section{Limitations of Ontology-Based Approaches}
 
-The most fundamental problem is computational. QUDT represents dimensional structure through a vector of exponents over the fundamental dimensions: length, mass, time, electric current, temperature, amount of substance, and luminous intensity \cite{hodgson2014quantities}. It provides qudt:conversionMultiplier per unit, relating each unit to its SI base equivalent. OM models dimensions similarly, with properties such as SI\_mass\_dimension\_exponent and SI\_length\_dimension\_exponent on dimension individuals \cite{vanassem2013ontology}. This information is present in the graph and queryable in principle. It does not reach the SPARQL expression evaluator.
+The most fundamental problem is computational. 
+\ac{qudt} represents dimensional structure through a vector of exponents over the fundamental dimensions: length, mass, time, electric current, temperature, amount of substance, and luminous intensity \cite{hodgson2014quantities}. 
+It provides \textsf{qudt:conversionMultiplier} per unit, relating each unit to its \ac{si} base equivalent. 
+\ac{om} models dimensions similarly, with properties such as \textsf{SI\_mass\_dimension\_exponent} and \textsf{SI\_length\_dimension\_exponent} on dimension individuals \cite{vanassem2013ontology}. 
+This information is present in the graph and queryable in principle. 
+It does not reach the \ac{sparql} expression evaluator.
 
-A FILTER expression evaluates against the RDF terms bound to query variables in the current solution, as established in Section 2.3. For a QUDT-encoded quantity, the term bound to the magnitude variable is a bare xsd:double, while the unit IRI is bound separately through a separate triple pattern. They are not a composite typed value. The dimensional relationships in the ontology are not carried into expression evaluation alongside the magnitude. A FILTER compares the raw xsd:double magnitude against 1.0 km with no awareness of units. A measurement of 500 metres passes FILTER(500 > 1.0) and is incorrectly included in the results, despite being shorter than one kilometre. ORDER BY over the same dataset sorts by raw magnitude, ranking 1500 (metres) above 2 (kilometres) even though 2 kilometres represents the greater physical distance. SUM adds the xsd:double values across all rows and returns a dimensionally meaningless number. Lefrançois and Zimmermann confirm that no existing RDF or SPARQL engine provides unit-aware evaluation for QUDT or OM quantities \cite{lefranccois2018unified}. Workarounds require making conversion factors explicit in every unit-aware query. When conversion information is retrieved from the ontology rather than hardcoded, additional triple patterns joining across the unit graph are needed, compounding the complexity of every unit-aware query.
+A FILTER expression evaluates against the \ac{rdf} terms bound to query variables in the current solution, as established in Section~2.3. 
+For a \ac{qudt}-encoded quantity, the term bound to the magnitude variable is a bare \textsf{xsd:double}, while the unit \ac{iri} is bound separately through a separate triple pattern. 
+They are not a composite typed value. 
+The dimensional relationships in the ontology are not carried into expression evaluation alongside the magnitude. 
+A FILTER compares the raw \textsf{xsd:double} magnitude against 1.0 km with no awareness of units. 
+A measurement of 500 metres passes FILTER(500 > 1.0) and is incorrectly included in the results, despite being shorter than one kilometre. 
+Lefrançois and Zimmermann confirm that no existing \ac{rdf} or \ac{sparql} engine 
+provides unit-aware evaluation for \ac{qudt} or \ac{om} quantities \cite{lefranccois2018unified}. 
+At the time of that work, no such engine existed, and to the best of our knowledge 
+that remains the case today.
+Workarounds require making conversion factors explicit in every unit-aware query. 
+When conversion information is retrieved from the ontology rather than hardcoded, additional triple patterns joining across the unit graph are needed, compounding the complexity of every unit-aware query.
 
-The second problem is bounded coverage. Ontology-based unit vocabularies enumerate units as named individuals in a curated graph, and the scale of the enumeration required is larger than it appears. Length alone is expressed in the metric system as metres, kilometres, millimetres, micrometres, and nanometres; in customary systems as inches, feet, yards, and miles; in nautical measurement as nautical miles and fathoms; and in astronomy as astronomical units, light-years, and parsecs. Derived units expand the space further. Speed is length divided by time, so every pairing of a length unit with a time unit is a distinct unit expression. Pressure is force per area. Energy is force times length. Power is energy per time. Each additional physical dimension multiplies the number of valid unit expressions by the number of units in that dimension. The total set of physically valid unit expressions has no natural boundary. No enumeration can be complete.
+The second problem is bounded coverage. 
+Ontology-based unit vocabularies enumerate units as named individuals in a curated graph, and the scale of the enumeration required is larger than it appears. 
+Length alone spans metric, customary, nautical, and astronomical systems. 
+Derived units expand the space further: every pairing of a length unit with a time unit is a distinct speed unit, and the same holds for pressure, energy, and power. 
+Each additional physical dimension multiplies the number of valid unit expressions by the number of units in that dimension. 
+The set of valid unit expressions is unbounded.
 
-Specific gaps confirm this across the evaluated ontologies. van Assem, Rijgersberg, and Top note that QUDT contains no parsec, light-year, or other astronomical units despite originating from a NASA initiative \cite{vanassem2013ontology}. Lefrançois and Zimmermann note that QUDT 1.1 defines a unit for kilowatt hour but not megawatt hour \cite{lefranccois2018unified}. These are not obscure units; they are in routine use in their respective domains. Keil and Schindler, evaluating eight major unit ontologies, found that coverage differed substantially between systems \cite{keil2018comparison}. When a needed unit is absent, the extension mechanism requires defining it by its base units and conversion factors. Two teams independently extending the vocabulary for the same missing unit create two different IRIs for the same physical unit. The coverage gap thereby becomes an interoperability gap \cite{lefranccois2018unified}.
+Specific gaps have been documented across the evaluated ontologies. 
+Keil and Schindler, evaluating eight major unit ontologies, found that 
+coverage differed substantially between systems \cite{keil2018comparison}. 
+When a needed unit is absent, the extension mechanism requires defining 
+it by its base units and conversion factors. 
+Two teams independently extending the vocabulary for the same missing 
+unit create two different \acp{iri} for the same physical unit. 
+The coverage gap thereby becomes an interoperability gap \cite{lefranccois2018unified}.
 
-The third problem is interoperability fragmentation. Multiple independently developed unit ontologies create a structural barrier at the IRI level. Keil and Schindler evaluated eight ontologies: MUO, OBOE, OM 1, OM 2, QU, QUDT, SWEET, and UO, together with the Wikidata corpus \cite{keil2018comparison}. They found that these systems use different terms for the same concepts. The concept VIM calls kind of quantity appears as physical quality in MUO, quantity kind in QU and QUDT, and physical quantity in Wikidata. Unit individuals receive different IRIs across all eight systems. Mapping them required normalizing spelling variants (metre/meter), label orderings (square meter/meter squared), system-of-units modifiers, and multiple languages. Even after this normalization, owl:sameAs links were sparse and the mapping revealed incorrect conversion factors and unit definitions in several ontologies \cite{keil2018comparison}. van Assem, Rijgersberg, and Top discuss two paths to integrating OM and QUDT: merging them into a single ontology, or letting both coexist while harmonizing them so that data expressed in one can be automatically translated into the other \cite{vanassem2013ontology}. They note that merging is complicated by missing unit information in QUDT's definitions of derived units and by deviating quantity names between the two ontologies. Datasets encoded against different ontologies, or against different versions of the same ontology, cannot be queried uniformly without cross-ontology alignments. Those alignments are manually constructed and are not guaranteed to be present.
+The third problem is interoperability. 
+Multiple independently developed unit ontologies create a structural barrier at the \ac{iri} level. 
+Keil and Schindler evaluated eight ontologies: \ac{muo}, \ac{oboe}, \ac{om} 1, \ac{om} 2, \ac{qu}, \ac{qudt}, \ac{sweet}, and \ac{uo}, together with the Wikidata corpus \cite{keil2018comparison}. 
+They found that these systems use different terms for the same concepts. 
+The concept \ac{vim} calls kind of quantity appears as physical quality in \ac{muo}, quantity kind in \ac{qu} and \ac{qudt}, and physical quantity in Wikidata. 
+Unit individuals receive different \acp{iri} across all eight systems, and mapping them revealed sparse \textsf{owl:sameAs} links and incorrect conversion factors in several ontologies \cite{keil2018comparison}. 
+Datasets encoded against different ontologies, or against different versions of the same ontology, cannot be queried uniformly without cross-ontology alignments. 
+Those alignments are manually constructed and are not guaranteed to be present.
 
-
-The fourth problem is verbosity. The reification pattern shown in Section 3.1 requires four triples per quantity value regardless of content. One links the subject to a blank node. Another types the blank node. A third carries the magnitude. A fourth carries the unit reference. Lefrançois and Zimmermann note that complex canonicalization mechanisms are needed to query these values uniformly \cite{lefranccois2018unified}. In a sensor network generating thousands of observations, this overhead compounds proportionally with the dataset size. The blank node structure also complicates data exchange, since blank node identifiers carry no global identity across graph boundaries.
+The fourth problem is verbosity. 
+The reification pattern shown in Section~3.1 requires at minimum four 
+triples per quantity value regardless of content: one linking the subject 
+to a blank node or named individual, one typing that resource, one 
+carrying the magnitude, and one carrying the unit reference. 
+Lefrançois and Zimmermann note that complex canonicalization mechanisms 
+are needed to query these values uniformly \cite{lefranccois2018unified}. 
+In a sensor network generating thousands of observations, this overhead 
+compounds proportionally with the dataset size. 
 
 
 \section{UCUM}
 
-The Unified Code for Units of Measure (UCUM) is a code system developed by Gunther Schadow and Clem McDonald and distributed by the Regenstrief Institute \cite{schadow_ucum}. Its purpose is to enable unambiguous machine-to-machine communication of quantities together with their units. Natural language unit names vary across languages, communities, and domains. UCUM expressions, by contrast, are case-sensitive character strings with a formal grammar, which makes them suitable for electronic data interchange without a separate disambiguation layer.
+The \ac{ucum} is a code system developed by Gunther Schadow and Clem McDonald and distributed by the Regenstrief Institute \cite{schadow_ucum}. 
+Its purpose is to enable unambiguous machine-to-machine communication of quantities together with their units. 
+Natural language unit names vary across languages, communities, and domains. 
+\ac{ucum} expressions, by contrast, are case-sensitive character strings with a formal grammar, which makes them suitable for electronic data interchange without a separate disambiguation layer.
 
-The grammar is compact and precisely defined. A unit expression is built from atomic unit symbols and metric prefixes using two operators, a period (.) for multiplication and a solidus (/) for division, with signed integer exponents written directly after the symbol. All symbols are case-sensitive: m denotes the metre, mol the mole, and metric prefixes follow SI conventions (k for kilo, M for mega, G for giga). Non-metric legacy units are enclosed in square brackets: [in\_i] for the international inch, [ft\_i] for the international foot. Dimensionless annotations are enclosed in curly braces. The grammar assigns each valid UCUM expression a precisely defined dimensional interpretation.
+The grammar is compact and precisely defined. 
+A unit expression is built from atomic unit symbols and metric prefixes using two operators, a period (.) for multiplication and a solidus (/) for division, with signed integer exponents written directly after the symbol. 
+All symbols are case-sensitive: m denotes the metre and k the kilo prefix. 
+Non-metric legacy units are enclosed in square brackets, such as \textsf{[in\_i]} for the international inch. 
+Dimensionless annotations are enclosed in curly braces. 
+The grammar assigns each valid \ac{ucum} expression a precisely defined dimensional interpretation.
 
-Coverage spans scientific, engineering, and business domains. SI base and derived units are included alongside metric prefixes, US customary units, and domain-specific units used in laboratory reporting, radiology, and pharmacology. UCUM has been adopted by DICOM \cite{nema_dicom}, LOINC \cite{mcdonald2003loinc}, and HL7 \cite{hl7_fhir_quantity}, and is referenced by ISO 11240:2012 \cite{iso2012_11240}. 
+Coverage spans scientific, engineering, and business domains. 
+\ac{si} base and derived units are included alongside metric prefixes, \ac{us} customary units, and domain-specific units used in laboratory reporting, radiology, and pharmacology. 
+\ac{ucum} has been adopted by \ac{dicom} \cite{nema_dicom}, \ac{loinc} \cite{mcdonald2003loinc}, and \ac{hl7} \cite{hl7_fhir_quantity}, and is referenced by \ac{iso} 11240:2012 \cite{iso2012_11240}.
 
-UCUM defines a subset of its units as special units, whose conversion to base-unit form requires a non-linear function. Celsius (Cel) and Fahrenheit ([degF]) involve an additive offset relative to the thermodynamic temperature scale. pH involves a logarithmic transformation of hydrogen ion concentration. The bel (B) and its decimal subdivision the decibel are logarithmic ratios. These units are valid UCUM expressions, but their conversion semantics fall outside the multiplicative algebra.
-
+\ac{ucum} defines a subset of its units as special units, whose conversion to base-unit form requires a non-linear function. 
+Celsius (Cel) and Fahrenheit (\textsf{[degF]}) involve an additive offset relative to the thermodynamic temperature scale. 
+pH involves a logarithmic transformation of hydrogen ion concentration. 
+The bel (B) and its decimal subdivision the decibel are logarithmic ratios. 
+These units are valid \ac{ucum} expressions, but their conversion semantics fall outside the multiplicative algebra.
 
 \section{The CDT Specification}
 
-Lefrançois and Zimmermann presented cdt:ucum at ESWC 2018 and formalized its specification in the LINDT Custom Datatypes document \cite{lefranccois2018unified,lefrancois2021lindt}. A quantity value is encoded as a single typed literal whose unit is part of the lexical form rather than a separate triple. Operator semantics are defined for equality, comparison, and arithmetic, making them available through native SPARQL operators without custom function syntax.
+Lefrançois and Zimmermann presented \textsf{cdt:ucum} at ESWC 2018 and formalized its
+specification in the LINDT Custom Datatypes document \cite{lefranccois2018unified,lefrancois2021lindt}.
+A quantity value is encoded as a single typed literal whose unit is part of the lexical form
+rather than a separate triple. Operator semantics are defined for equality, comparison, and
+arithmetic, making them available through native SPARQL operators without custom function syntax.
 
-The specification defines two general-purpose datatypes: cdt:ucum, with IRI https://\allowbreak w3id.org/\allowbreak cdt/\allowbreak ucum, and cdt:ucumunit, with IRI https://\allowbreak w3id.org/\allowbreak cdt/\allowbreak ucumunit. A quantity value encoded with cdt:ucum requires a single triple:
+The specification defines two general-purpose datatypes: \textsf{cdt:ucum}, with IRI
+\texttt{https://\allowbreak w3id.org/\allowbreak cdt/\allowbreak ucum}, and
+\textsf{cdt:ucumunit}, with IRI
+\texttt{https://\allowbreak w3id.org/\allowbreak cdt/\allowbreak ucumunit}. A quantity value
+encoded with \textsf{cdt:ucum} requires a single triple:
 
 \begin{verbatim}
 @prefix cdt: <https://w3id.org/cdt/> .
@@ -95,16 +179,70 @@ BASE <http://example.org/>
 
 \end{verbatim}
 
-Compared to the four-triple QUDT pattern in Section 3.1, the magnitude and unit are part of a single typed literal and no blank node is needed.
+Compared to the four-triple QUDT pattern in Section~3.1, the magnitude and unit are part of
+a single typed literal and no blank node is needed.
 
-cdt:ucumunit encodes a bare UCUM unit expression without a magnitude. Its lexical space is the set of valid UCUM unit expressions. Its value space is the underlying set of the algebra of units defined in Section 3 of the UCUM specification. The lexical-to-value mapping sends each expression to the unit it denotes in that algebra. Two cdt:ucumunit literals are value-equal when they denote the same unit: "km.h-1", "km/h", and "(1000m)/(60min)" are all well-formed and share the same value.
+\textsf{cdt:ucumunit} encodes a bare UCUM unit expression without a magnitude. Its lexical
+space is the set of valid UCUM unit expressions. Its value space is the underlying set of the
+algebra of units defined in Section~3 of the UCUM specification. That algebra is formalized
+in §18, which defines the set $U$ of units as the equivalence classes generated by the
+equality relation over UCUM expressions; two expressions belong to the same equivalence class
+when they denote the same unit, and $(U, \cdot)$ forms an Abelian group under unit
+multiplication. The lexical-to-value mapping sends each unit expression to its equivalence
+class in $U$. Two \textsf{cdt:ucumunit} literals are value-equal when they denote the same
+unit: \texttt{km.h-1}, \texttt{km/h}, and \texttt{(1000m)/(60min)} are all well-formed and
+share the same value.
 
-cdt:ucum encodes a quantity value as a single literal. Its lexical space is the concatenation of the lexical form of an xsd:decimal, optionally followed by e or E and the lexical form of an xsd:integer, at least one whitespace character, and a valid UCUM unit expression. The value space is the set of pairs (v, u) where v is a real number and u is any unit with magnitude 1 relative to the UCUM base units. The lexical-to-value mapping normalizes both components: the number v = m x 10\textasciicircum{}e, where m is the decimal and e is the exponent (zero if absent); the unit u = r*b, where r is the magnitude of the expressed unit relative to the base units b. The mapping assigns the lexical form to the pair (v x r, b).
+\textsf{cdt:ucum} encodes a quantity value as a single literal. Its lexical space is the
+concatenation of the lexical form of an \textsf{xsd:decimal}, optionally followed by
+\texttt{e} or \texttt{E} and the lexical form of an \textsf{xsd:integer}, at least one
+whitespace character, and a valid UCUM unit expression. The value space is the set of pairs
+$(v, u)$ where $v$ is a real number and $u$ is a product of UCUM base units raised to integer
+powers. This follows from §20 of the UCUM specification, which represents every proper unit
+as a pair of a scalar magnitude and a dimension vector over the base units; in the value pair,
+the magnitude is absorbed into $v$ and $u$ retains only the base-unit structure. The
+lexical-to-value mapping normalizes both components: the number $v = m \times 10^e$, where
+$m$ is the decimal and $e$ is the exponent (zero if absent); the unit $u = r \cdot b$, where
+$r$ is the magnitude of the expressed unit relative to the base units $b$. The mapping assigns
+the lexical form to the pair $(v \times r,\, b)$.
 
-Value equality follows directly from the mapping. The literal "1 km"\textasciicircum{}\textasciicircum{}cdt:ucum has decimal 1 and the unit km, whose magnitude relative to the metre is 1000. Its mapped value is (1 x 1000, m) = (1000, m). The literal "1000 m"\textasciicircum{}\textasciicircum{}cdt:ucum has decimal 1000 and magnitude 1, giving (1000 x 1, m) = (1000, m). The two pairs are identical, so the literals are value-equal. No explicit conversion step is required in the query; the equality is resolved by the mapping at parse time.
+Value equality follows directly from the mapping. The literal
+\texttt{"1 km"\^{}\^{}}\textsf{cdt:ucum} has decimal~1 and the unit \texttt{km}, whose
+magnitude relative to the metre is~1000. Its mapped value is
+$(1 \times 1000,\, \text{m}) = (1000,\, \text{m})$. The literal
+\texttt{"1000 m"\^{}\^{}}\textsf{cdt:ucum} has decimal~1000 and magnitude~1, giving
+$(1000 \times 1,\, \text{m}) = (1000,\, \text{m})$. The two pairs are identical, so the
+literals are value-equal.
 
-The mapping assumes that the expressed unit relates to its base units by a constant factor r. The special units identified in Section 3.3 violate this assumption: no constant factor converts Celsius to kelvin, or pH to moles per litre. An implementation built on this mapping therefore cannot correctly evaluate equality or comparison for special units. This is the principal known limitation of cdt:ucum, and it surfaces as expected test failures in each implementation examined in this thesis.
+The mapping is defined only for units that relate to their base units through a constant
+multiplicative factor. The UCUM specification calls these \emph{proper units} and defines a
+separate category of \emph{special units} (§21) for quantities measured on non-ratio scales,
+such as temperature and logarithmic quantities. A special unit is converted to and from its
+base unit by an arbitrary real function, not a constant scalar, so the \textsf{cdt:ucum}
+mapping has no way to handle it. The special units identified in Section~3.3 fall into this
+category: no constant factor converts Celsius to kelvin, or pH to moles per litre. An
+implementation built on this mapping therefore cannot correctly evaluate equality or comparison
+for special units. This is the principal known limitation of \textsf{cdt:ucum}, and it
+surfaces as expected test failures in each implementation examined in this thesis.
 
-The specification defines operator semantics for four categories. The equality operator (=) tests value equality as described above. The comparison operators (< and >) order two cdt:ucum literals by their normalized real value; they are defined only for literals of the same dimension and raise a type error when applied across incompatible dimensions. The arithmetic operators (+ and -) add or subtract two commensurable literals, producing a result in the common base unit. The operators (* and /) multiply or divide literals of any dimensions, combining or cancelling dimensions accordingly, and both also accept a numeric scalar on either side. All four categories are exposed through native SPARQL operator syntax. The specification additionally defines the custom SPARQL function cdt:sameDimension, which takes two cdt:ucum arguments and returns an xsd:boolean indicating whether they are dimensionally commensurable.
+The specification defines operator semantics for four categories. The equality operator
+(\texttt{=}) tests value equality as described above. The comparison operators (\texttt{<}
+and \texttt{>}) compare two \textsf{cdt:ucum} literals by their normalized real value; they are
+defined only for literals of the same dimension and raise a type error when applied across
+incompatible dimensions. The arithmetic operators (\texttt{+} and \texttt{-}) add or subtract
+two commensurable literals, producing a result in the common base unit. The operators
+(\texttt{*} and \texttt{/}) multiply or divide literals of any dimensions, combining or
+cancelling dimensions accordingly, and both also accept a numeric scalar on either side. All
+four categories are exposed through native SPARQL operator syntax. The specification
+additionally defines the custom SPARQL function \textsf{cdt:sameDimension}, which takes two
+\textsf{cdt:ucum} arguments and returns an \textsf{xsd:boolean} indicating whether they are
+dimensionally commensurable.
 
-A conforming implementation must satisfy the following obligations. It must correctly parse all lexical forms within the cdt:ucum lexical space and treat forms outside it as ill-typed. It must implement value equality using the lexical-to-value mapping. It must implement the comparison operators with the correct dimensional restriction. It must implement the arithmetic operators with their full type coverage, including scalar operands. It must register cdt:sameDimension as a callable SPARQL function. These obligations define the interface between the datatype and the host RDF library. Chapter 5 presents a methodology for satisfying them across different library and language environments.
+A conforming implementation must satisfy the following obligations. It must correctly parse
+all lexical forms within the \textsf{cdt:ucum} lexical space and treat forms outside it as
+ill-typed. It must implement value equality using the lexical-to-value mapping. It must
+implement the comparison operators with the correct dimensional restriction. It must implement
+the arithmetic operators with their full type coverage, including scalar operands. It must
+register \textsf{cdt:sameDimension} as a callable SPARQL function. These obligations define
+the interface between the datatype and the host RDF library. Section~5 presents a methodology
+for satisfying them across different library and language environments.
